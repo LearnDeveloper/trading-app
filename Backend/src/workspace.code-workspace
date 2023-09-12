@@ -1,0 +1,39 @@
+{
+  "folders": [
+    {
+      "path": "..\\..\\NFT\\NFT_deployment"
+    },
+    {
+      "path": ".."
+    },
+    {
+      "path": "..\\..\\NFT\\API\\API-Nft-APi"
+    },
+    {
+      "path": "..\\..\\Merck-US\\dmc-dih-mobilemessaging-master@1eba6172fd9 (1)"
+    },
+    {
+      "path": "..\\..\\NFT\\NFT_deployment\\americaFirstfrontend\\AmericaFirst"
+    }
+  ],
+  "settings": {},
+  "launch": {
+    "configurations": [
+      {
+        "type": "aws-sam",
+        "request": "direct-invoke",
+        "name": "API-Nft-APi:src/DynamoDbUpload.handler (nodejs14.x)",
+        "invokeTarget": {
+          "target": "code",
+          "projectRoot": "d:\\NFT\\API\\API-Nft-APi",
+          "lambdaHandler": "src/DynamoDbUpload.handler"
+        },
+        "lambda": {
+          "runtime": "nodejs14.x",
+          "payload": {},
+          "environmentVariables": {}
+        }
+      }
+    ]
+  }
+}
