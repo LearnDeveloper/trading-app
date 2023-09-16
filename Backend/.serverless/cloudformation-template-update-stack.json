@@ -185,7 +185,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/trading-api/dev/1694464783531-2023-09-11T20:39:43.531Z/trading-api.zip"
+          "S3Key": "serverless/trading-api/dev/1694625641939-2023-09-13T17:20:41.939Z/trading-api.zip"
         },
         "Handler": "src/createUser.handler",
         "Runtime": "nodejs14.x",
@@ -215,7 +215,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/trading-api/dev/1694464783531-2023-09-11T20:39:43.531Z/trading-api.zip"
+          "S3Key": "serverless/trading-api/dev/1694625641939-2023-09-13T17:20:41.939Z/trading-api.zip"
         },
         "Handler": "src/login.handler",
         "Runtime": "nodejs14.x",
@@ -245,7 +245,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/trading-api/dev/1694464783531-2023-09-11T20:39:43.531Z/trading-api.zip"
+          "S3Key": "serverless/trading-api/dev/1694625641939-2023-09-13T17:20:41.939Z/trading-api.zip"
         },
         "Handler": "src/getuser.handler",
         "Runtime": "nodejs14.x",
@@ -275,7 +275,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/trading-api/dev/1694464783531-2023-09-11T20:39:43.531Z/trading-api.zip"
+          "S3Key": "serverless/trading-api/dev/1694625641939-2023-09-13T17:20:41.939Z/trading-api.zip"
         },
         "Handler": "src/verifyotp.handler",
         "Runtime": "nodejs14.x",
@@ -305,7 +305,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/trading-api/dev/1694464783531-2023-09-11T20:39:43.531Z/trading-api.zip"
+          "S3Key": "serverless/trading-api/dev/1694625641939-2023-09-13T17:20:41.939Z/trading-api.zip"
         },
         "Handler": "src/resend.handler",
         "Runtime": "nodejs14.x",
@@ -421,7 +421,7 @@
         }
       }
     },
-    "ApiGatewayResourceGetusers": {
+    "ApiGatewayResourceGetallusers": {
       "Type": "AWS::ApiGateway::Resource",
       "Properties": {
         "ParentId": {
@@ -430,7 +430,7 @@
             "RootResourceId"
           ]
         },
-        "PathPart": "getusers",
+        "PathPart": "getAllusers",
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -556,7 +556,7 @@
         }
       }
     },
-    "ApiGatewayMethodGetusersOptions": {
+    "ApiGatewayMethodGetallusersOptions": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "AuthorizationType": "NONE",
@@ -594,7 +594,7 @@
           ]
         },
         "ResourceId": {
-          "Ref": "ApiGatewayResourceGetusers"
+          "Ref": "ApiGatewayResourceGetallusers"
         },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
@@ -783,13 +783,13 @@
         "LoginLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayMethodGetusersPost": {
+    "ApiGatewayMethodGetallusersPost": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "HttpMethod": "POST",
         "RequestParameters": {},
         "ResourceId": {
-          "Ref": "ApiGatewayResourceGetusers"
+          "Ref": "ApiGatewayResourceGetallusers"
         },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
@@ -921,7 +921,7 @@
         "ResendLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1694464771145": {
+    "ApiGatewayDeployment1694625627871": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -932,12 +932,12 @@
       "DependsOn": [
         "ApiGatewayMethodCreateuserOptions",
         "ApiGatewayMethodLoginOptions",
-        "ApiGatewayMethodGetusersOptions",
+        "ApiGatewayMethodGetallusersOptions",
         "ApiGatewayMethodVerifyotpOptions",
         "ApiGatewayMethodResendOptions",
         "ApiGatewayMethodCreateuserPost",
         "ApiGatewayMethodLoginPost",
-        "ApiGatewayMethodGetusersPost",
+        "ApiGatewayMethodGetallusersPost",
         "ApiGatewayMethodVerifyotpPost",
         "ApiGatewayMethodResendPost"
       ]

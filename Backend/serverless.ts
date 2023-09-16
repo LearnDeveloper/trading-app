@@ -53,7 +53,7 @@ const serverlessConfiguration: AWS = {
       events: [
         {
           http: {
-            path: 'getusers',
+            path: 'getAllusers',
             method: 'post',
             cors: true,
           },

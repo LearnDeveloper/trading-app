@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "814500289946",
+    "project_id": "trading-app-7c173",
+    "storage_bucket": "trading-app-7c173.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814500289946:android:cc5a5d957fc55b224dee23",
+        "android_client_info": {
+          "package_name": "com.learn.tradingsignal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "814500289946-gmvotckg75l09uls4qdpbdrvv2gfrc4n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4XP0wrevTzq55WuVlMHIsEvZ0CITVJnw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "814500289946-gmvotckg75l09uls4qdpbdrvv2gfrc4n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
