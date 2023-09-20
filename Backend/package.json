@@ -19,7 +19,8 @@
     "mongodb": "^6.0.0",
     "nodemailer": "^6.9.5",
     "pdfkit": "^0.13.0",
-    "source-map-support": "^0.5.19"
+    "source-map-support": "^0.5.19",
+    "stripe": "^13.6.0"
   },
   "devDependencies": {
     "@serverless/typescript": "^2.71.0",

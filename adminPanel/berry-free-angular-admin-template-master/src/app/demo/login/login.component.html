@@ -1,0 +1,91 @@
+<main>
+    
+    <!-- <img src="{{ user.photoUrl }}" referrerpolicy="no-referrer">
+    <div>
+      <h4>{{ user.name }}</h4>
+      <p>{{ user.email }}</p>
+    </div> -->
+    
+    <!-- <div *ngIf="user" class="card text-center">
+      <h6 class="card-header">
+        Social Login Demo
+      </h6>
+      <div class="card-block"></div>
+      <img class="card-img-top img-responsive photo" src="{{ user.photoUrl }}">
+      <div class="card-block">
+        <h4 class="card-title">{{ user.name }}</h4>
+        <p class="card-text">{{ user.email }}</p>
+      </div>
+      <div class="card-block">
+        <button class="btn btn-danger">Sign out</button>
+      </div>
+    </div> -->
+    
+    <div class="login-container mt-5">
+        <div class="logo">
+          <img src="../../assets/images/Logo.png" alt="Logo">
+        </div>
+        <div class="title" style="padding: 10px;">
+          <h1 class="title">Admin Login</h1>
+          <p class="sub-title">Login to access all the details</p>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="text-input">email</label>
+                <div class="input-container">
+                  <input
+                    type="text"
+                    id="text-input"
+                    formControlName="username"
+                    required
+                    style="background-color: #ECECEC;"
+                    placeholder="Email Address"
+                  >
+                  <i
+                    class="fa fa-times-circle"
+                    *ngIf="username.value"
+                    (click)="clearTextInput()"
+                  ></i>
+                </div>
+              </div>
+              
+          <div class="form-group">
+            <label for="password">password</label>
+            <div class="password-input">
+              <input
+                type="{{ hidePassword ? 'password' : 'text' }}"
+                id="password"
+                formControlName="password"
+                required
+                style="background-color: #ECECEC;"
+                placeholder="Password"
+              >
+              <i
+                class="fa" 
+                style="color: gray !important"
+                [ngClass]="{'fa-eye': hidePassword, 'fa-eye-slash': !hidePassword}"
+                (click)="togglePasswordVisibility()"
+              ></i>
+            </div>
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
+              <!-- <div *ngIf="password.errors.required">Password is required.</div> -->
+            </div>
+          </div>
+          
+          <div class="form-group remember-forgot">
+            <label>
+              <!-- <input style="width: 8% !important;" type="checkbox" (change)="rememberCheck($event)" formControlName="rememberMe"> {{'Remember me' | translate}} -->
+            </label>
+            <!-- <a href="#" class="forgot-password-link">{{'forgotpassword' | translate}}?</a> -->
+          </div>
+          <button class="buttonlogin mt-5 mb-5" type="submit" [disabled]="loginForm.invalid">Sign In ></button>
+        </form>
+        <div class="row">
+            <div class="continueText text-center">
+                <span>Or continue with</span>
+            </div>
+        </div>
+      </div>
+      
+          
+    </main>

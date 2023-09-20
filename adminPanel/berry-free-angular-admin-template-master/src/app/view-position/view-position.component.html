@@ -1,0 +1,334 @@
+
+<app-navigation
+  class="coded-navbar pc-sidebar"
+  [ngClass]="{
+    'navbar-collapsed': navCollapsed,
+    'mob-open': navCollapsedMob
+  }"
+  (NavCollapsedMob)="navMobClick()"
+></app-navigation>
+
+<app-nav-bar (NavCollapse)="this.navCollapsed = !this.navCollapsed" (NavCollapsedMob)="navMobClick()"></app-nav-bar>
+
+<div class="pc-container">
+  <div class="coded-wrapper">
+    <div class="coded-content">
+      <div class="coded-inner-content">
+        <app-breadcrumb></app-breadcrumb>
+        <div class="main-body">
+            <div class="position">
+                <!-- <label>Select a position:</label>
+                <br> -->
+                <div>
+                  <span style="margin-right: 5rem;"> 
+                    <input type="radio" id="opened" [(ngModel)]="selectedPosition" name="position" value="opened">
+                    <label style="margin-left: 5px;" for="opened">Opened</label>
+                  </span>
+    
+                </div>
+                <div>
+                  <span>
+                    <input type="radio" id="closed" [(ngModel)]="selectedPosition" name="position" value="closed">
+                    <label style="margin-left: 5px;" for="closed">Closed</label>
+                  </span>
+    
+                </div>
+              </div>  
+              <div class="title">
+                <h2>{{ selectedPosition }} Positions</h2>
+            </div>
+            <ng-container *ngIf="selectedPosition == 'opened'">
+                <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="dataSourceOpen" matSort>
+                      <!-- Add your table columns here using matColumnDef -->
+             
+        
+                      <ng-container matColumnDef="user id">
+                        <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;"> Coin Title
+                        </mat-header-cell> <br>
+                        <mat-cell *matCellDef="let element; let i = index;">{{element.coinTitle}}
+        
+                        </mat-cell>
+                      </ng-container>
+        
+                      <ng-container matColumnDef="full name">
+                        <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Percentage</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.percentage}}
+                        </mat-cell>
+                      </ng-container>
+        
+                      <ng-container matColumnDef="email">
+                        <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Entry Price</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.entryPrice}}
+                        </mat-cell>
+                      </ng-container>
+        
+                      <ng-container matColumnDef="phone number">
+                        <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Average Price</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.averagePrice}}
+                        </mat-cell>
+                      </ng-container>
+
+                      <ng-container matColumnDef="portfolio">
+                        <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Portfolio</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.portfolio}}
+                        </mat-cell>
+                      </ng-container>
+
+                      
+
+                      <ng-container matColumnDef="shortlong">
+                        <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Short/Long</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> 
+                          <div class="row">
+                            <span style="color: green;" *ngIf="element.shortlong == 1">Long</span>
+                            <span style="color: red;" *ngIf="element.shortlong == 0">Short</span>
+                          </div>
+                        </mat-cell>
+                      </ng-container>
+        
+        
+                                    
+                      <ng-container matColumnDef="is Active">
+                        <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Is Active</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> <div class="row">
+                          <!-- <button class="button">{{element.isActive}}</button> -->
+                          <span style="color: green;" *ngIf="element.status">Enabled</span>
+                          <span style="color: red;" *ngIf="!element.status">Disabled</span>
+                        </div>
+                        </mat-cell>
+                      </ng-container>
+
+                 
+                      
+                      <ng-container matColumnDef="Action">
+                        <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Created Time</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                          {{element.createdTime}}
+                        </mat-cell>
+                      </ng-container>
+        
+                      <!-- <ng-container matColumnDef="device details">
+                        <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Action</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> <button (click)="openPopup(element)" class="button">Edit</button>
+                        </mat-cell>
+                      </ng-container> -->
+
+                      <mat-header-row *matHeaderRowDef="displayedColumns;" style="background-color: #707070;color: white;">
+                      </mat-header-row>
+                      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        
+        
+        
+        
+                      <!-- Define the table rows -->
+                 
+                    </table>
+                  
+                    <!-- Add paginator below the table -->
+                    <mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+                  </div>
+            </ng-container>
+            <ng-container *ngIf="selectedPosition == 'closed'">
+                <div class="mat-elevation-z8">
+                  <table mat-table [dataSource]="dataSourceClose" matSort>
+                    <!-- Add your table columns here using matColumnDef -->
+           
+      
+                    <ng-container matColumnDef="user id">
+                      <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;"> Coin Title
+                      </mat-header-cell> <br>
+                      <mat-cell *matCellDef="let element; let i = index;">{{element.coinTitle}}
+      
+                      </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="percentage">
+                      <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Percentage</mat-header-cell>
+                      <mat-cell *matCellDef="let element"> {{element.percentage}}
+                      </mat-cell>
+                    </ng-container>
+      
+                    <ng-container matColumnDef="full name">
+                      <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Open Date</mat-header-cell>
+                      <mat-cell *matCellDef="let element"> {{element.openDate}}
+                      </mat-cell>
+                    </ng-container>
+      
+                    <ng-container matColumnDef="email">
+                      <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Closed Entry Price</mat-header-cell>
+                      <mat-cell *matCellDef="let element"> {{element.closedEntryPrice}}
+                      </mat-cell>
+                    </ng-container>
+      
+                    <ng-container matColumnDef="phone number">
+                      <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Closed Date</mat-header-cell>
+                      <mat-cell *matCellDef="let element"> {{element.closeDate}}
+                      </mat-cell>
+                    </ng-container>
+
+                    
+                    <ng-container matColumnDef="closedexitprice">
+                      <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Closed Exit Price</mat-header-cell>
+                      <mat-cell *matCellDef="let element"> {{element.closedExitPrice}}
+                      </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="shortlong">
+                      <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Short/Long</mat-header-cell>
+                      <mat-cell *matCellDef="let element"> 
+                        <div class="row">
+                          <span style="color: green;" *ngIf="element.shortlong == 1">Long</span>
+                          <span style="color: red;" *ngIf="element.shortlong == 0">Short</span>
+                        </div>
+                      </mat-cell>
+                    </ng-container>
+      
+      
+                                  
+                    <ng-container matColumnDef="is Active">
+                      <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Is Active</mat-header-cell>
+                      <mat-cell *matCellDef="let element"> <div class="row">
+                        <!-- <button class="button">{{element.isActive}}</button> -->
+                        <span style="color: green;" *ngIf="element.status">Enabled</span>
+                        <span style="color: red;" *ngIf="!element.status">Disabled</span>
+                      </div>
+                      </mat-cell>
+                    </ng-container>
+
+               
+                    
+                    <ng-container matColumnDef="Action">
+                      <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Created Time</mat-header-cell>
+                      <mat-cell *matCellDef="let element">
+                        {{element.createdTime}}
+                      </mat-cell>
+                    </ng-container>
+      
+                    <!-- <ng-container matColumnDef="device details">
+                      <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Action</mat-header-cell>
+                      <mat-cell *matCellDef="let element"> <button (click)="openPopup(element)" class="button">Edit</button>
+                      </mat-cell>
+                    </ng-container> -->
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns2;" style="background-color: #707070;color: white;">
+                    </mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
+      
+      
+      
+      
+                    <!-- Define the table rows -->
+               
+                  </table>
+                
+                  
+                    <!-- Add paginator below the table -->
+                    <mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+                  </div>
+            </ng-container>
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- popup.component.html -->
+
+<div *ngIf="editpopup == true" class="popup-overlay">
+  <div class="popup" style="width:400px !important;height: 575px !important;">
+    <h2 style="border-bottom: 1px solid gray;">Edit User Information</h2>
+    <!-- <p>This is the content of the popup.</p> -->
+    <div class="popupBody" style="line-height: 2;">
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="divContainer">
+          <label>Email:</label>
+          <input type="text" formControlName="email">
+        </div>
+        <div class="divContainer">
+          <label>Phone Number:</label>
+          <input type="text" formControlName="phoneNumber">
+        </div>
+        <div class="divContainer">
+          <label>Full Name:</label>
+          <input type="text" formControlName="fullName">
+        </div>
+        <div class="divContainer">
+          <label>Language:</label>
+          <input type="text" formControlName="language">
+        </div>
+        <div class="divContainer">
+          <label>User ID:</label>
+          <input type="text" formControlName="userId">
+        </div>
+        <div class="divContainer">
+          <label>Password:</label>
+          <input type="password" formControlName="password">
+        </div>
+        <div class="divContainer">
+          <label>Active:</label>
+          <select formControlName="active" id="cars" name="cars">
+            <option [value]="true">Yes</option>
+            <option [value]="false">No</option>
+          </select>
+        </div>
+        <div class="divContainer">
+          <label>Banned:</label>
+          <select formControlName="banned" id="cars" name="cars">
+            <option [value]="true">Yes</option>
+            <option [value]="false">No</option>
+          </select>
+        </div>
+        <div class="renameBtn mt-4">
+          <button style="color:teal !important"  (click)="editpopup = false" class="docFavCancleBtn" >Cancel</button>
+          <button class="docFavSaveBtn" type="submit">Edit</button>
+        </div>    
+      </form>
+ </div>
+</div>
+    </div>
+
+<div *ngIf="popup == true" class="popup-overlay">
+  <div class="popup">
+    <h2 style="border-bottom: 1px solid gray;">Edit Information</h2>
+    <!-- <p>This is the content of the popup.</p> -->
+    <div class="popupBody">
+<div class="row" style="text-align: left;">
+  <span class="mt-2">OS : <b>{{selectedUser.OS}}</b></span>
+  <span class="mt-2">Device Type : <b>{{selectedUser.osVersion}}</b></span>
+  <span class="mt-2">screen_resolution : <b>{{selectedUser.screen_resolution}}</b></span>
+  <span class="mt-2">userAgent : <b>{{selectedUser.userAgent}}</b></span>
+  <span class="mt-2 text-center">
+    <img style="width: 100px;" *ngIf="selectedUser.isDesktop" src="../../assets/images/desktop.png" alt="desktop">
+    <img style="width: 100px;" *ngIf="selectedUser.isTablet"  src="../../assets/images/tablet.png" alt="desktop">
+    <img style="width: 100px;" *ngIf="selectedUser.isMobile"  src="../../assets/images/mobile.png" alt="desktop">
+  </span>
+</div>
+    </div>
+    <div class="renameBtn">
+      <button style="color:white!important"   (click)="popup = false" class="docFavSaveBtn" >Close</button>
+      <!-- <button class="docFavSaveBtn" >Delete</button> -->
+    </div>    
+      
+    </div>
+  </div>
+<footer class="pc-footer">
+  <div class="footer-wrapper container-fluid">
+    <div class="row">
+      <div class="col my-1">
+        <p class="m-0"> Copyright &copy; <a href="" target="_blank">L-earn Design and Developed by Boom Tech</a> </p>
+      </div>
+      <div class="col-auto my-1">
+        <ul class="list-inline footer-link mb-0">
+          <li class="list-inline-item"><a href="/" target="_blank">Home</a></li>
+          <li class="list-inline-item">
+            <a href="/privacy-policy/" target="_blank">Privacy Policy</a>
+          </li>
+          <li class="list-inline-item"><a href="" target="_blank">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<app-configuration></app-configuration>

@@ -1,0 +1,292 @@
+
+<app-navigation
+  class="coded-navbar pc-sidebar"
+  [ngClass]="{
+    'navbar-collapsed': navCollapsed,
+    'mob-open': navCollapsedMob
+  }"
+  (NavCollapsedMob)="navMobClick()"
+></app-navigation>
+
+<app-nav-bar (NavCollapse)="this.navCollapsed = !this.navCollapsed" (NavCollapsedMob)="navMobClick()"></app-nav-bar>
+
+<div class="pc-container">
+  <div class="coded-wrapper">
+    <div class="coded-content">
+      <div class="coded-inner-content">
+        <app-breadcrumb></app-breadcrumb>
+
+        <div class="main-body">
+          <div class="position">
+            <!-- <label>Select a position:</label>
+            <br> -->
+            <div>
+              <span style="margin-right: 5rem;"> 
+                <input type="radio" id="opened" [(ngModel)]="selectedPosition" name="position" value="opened">
+                <label style="margin-left: 5px;" for="opened">Opened</label>
+              </span>
+
+            </div>
+            <div>
+              <span>
+                <input type="radio" id="closed" [(ngModel)]="selectedPosition" name="position" value="closed">
+                <label style="margin-left: 5px;" for="closed">Closed</label>
+              </span>
+
+            </div>
+          </div>          
+
+            <div class="title">
+                <h2>Add {{ selectedPosition }} Positions</h2>
+            </div>
+          <ng-container *ngIf = "selectedPosition == 'opened'">  
+            <form [formGroup]="positionForm">
+         <div class="row" style="padding: 20px;">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="formGroup">
+                    Coin Title
+                </label>
+                <br>
+                <input type="text" class="input" formControlName="coinTitle" placeholder="BTC/USDT" >
+                <div *ngIf="positionForm.get('coinTitle').hasError('required')" class="error">Coin Title is required.</div>
+                <div *ngIf="positionForm.get('coinTitle').hasError('maxlength')" class="error">Coin Title cannot exceed 10 characters.</div>            
+              </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="formGroup">
+                        percentage
+                    </label>
+                    <br>
+                    <input class="input" type="number" formControlName="percentage" placeholder="Enter the percentage" >
+                    <div *ngIf="positionForm.get('percentage').hasError('required')" class="error">Coin Title is required.</div>
+                    <div *ngIf="positionForm.get('percentage').hasError('maxlength')" class="error">Coin Title cannot exceed 5 characters.</div>
+                  </div>
+    
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="formGroup">
+                       Entry Price
+                    </label>
+                    <br>
+                    <input class="input" type="number" formControlName="entryPrice" placeholder="Enter the Entry Price" >
+                    <div *ngIf="positionForm.get('entryPrice').hasError('required')" class="error">Entry Price is required.</div>
+                    <div *ngIf="positionForm.get('entryPrice').hasError('maxlength')" class="error">Entry Price cannot exceed 5 characters.</div>
+                  </div>
+    
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="formGroup">
+                        Average Price
+                    </label>
+                    <br>
+                    <input class="input" type="number" formControlName="averagePrice" placeholder="Enter the Average Price" >
+                    <div *ngIf="positionForm.get('averagePrice').hasError('required')" class="error">Average Price is required.</div>
+                    <div *ngIf="positionForm.get('averagePrice').hasError('maxlength')" class="error">Average Price cannot exceed 5 characters.</div>
+                  </div>
+    
+            </div>
+         </div>
+
+         
+         <div class="row" style="padding: 20px;">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="formGroup">
+                   Take Profit
+                </label>
+                <br>
+                <input type="number" class="input" formControlName="takeProfit" placeholder="Enter the Take Profit" >
+                <div *ngIf="positionForm.get('takeProfit').hasError('required')" class="error">Take Profit is required.</div>
+                <div *ngIf="positionForm.get('takeProfit').hasError('maxlength')" class="error">Take Profit cannot exceed 5 characters.</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="formGroup">
+                        Portfolio
+                    </label>
+                    <br>
+                    <input class="input" type="text" formControlName="portfolio" placeholder="Enter the Portfolio" >
+                    <div *ngIf="positionForm.get('portfolio').hasError('required')" class="error">Portfolio is required.</div>
+                    <div *ngIf="positionForm.get('portfolio').hasError('maxlength')" class="error">Portfolio cannot exceed 5 characters.</div>
+                  </div>
+    
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="formGroup">
+                        Short/Long
+                    </label>
+                    <br>
+                    <!-- <input class="input" type="text" formControlName="coinName33" placeholder="Select the Category" > -->
+                    <select style="color: black;" formControlName="shortlong">Select the Category
+                      <option [value]="1">Long</option>
+                      <option [value]="2">Short</option>
+                    </select>
+                    <div *ngIf="positionForm.get('shortlong').hasError('required')" class="error">Short/Long is required.</div>
+                    <div *ngIf="positionForm.get('shortlong').hasError('maxlength')" class="error">Short/Long cannot exceed 5 characters.</div>
+                  </div>
+    `
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="formGroup">
+                       Status
+                    </label>
+                    <br>
+                    <select style="color: black;" formControlName="status">Select the Category
+                      <option [value]="true">Enable</option>
+                      <option [value]="false">Disable</option>
+                    </select>
+                  </div>
+    
+            </div>
+         </div>
+ 
+
+         <div class="row text-center mt-4">
+            <button (click)="onSubmit()"  style="width: 200px;margin-left: 40%;" class="docFavSaveBtn" type="submit">Save</button>
+         </div>
+
+         
+        </form>     
+      </ng-container>  
+      <ng-container *ngIf = "selectedPosition == 'closed'">  
+        <form [formGroup]="closedPositionForm">
+     <div class="row" style="padding: 20px;">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="formGroup">
+                Position Opened Date
+            </label>
+            <br>
+            <input type="datetime-local" class="input" formControlName="openDate" placeholder="Enter the Coin like BTC/USDT" >
+            <div *ngIf="closedPositionForm.get('openDate').hasError('required')" class="error">Open Date is required.</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="formGroup">
+                  Entry Price
+                </label>
+                <br>
+                <input class="input" type="number" formControlName="closedEntryPrice" placeholder="Enter the percentage" >
+                <div *ngIf="closedPositionForm.get('closedEntryPrice').hasError('required')" class="error">Closed Entry Price is required.</div>
+                <div *ngIf="closedPositionForm.get('closedEntryPrice').hasError('pattern')" class="error">Invalid Closed Entry Price format. Use up to 2 decimal places.</div>
+              </div>
+
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="formGroup">
+                  Position Closed Date
+                </label>
+                <br>
+                <input class="input" type="datetime-local" formControlName="closeDate" placeholder="Enter the Entry Price" >
+                <div *ngIf="closedPositionForm.get('closeDate').hasError('required')" class="error">Close Date is required.</div>
+              </div>
+
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="formGroup">
+                    Exit Price
+                </label>
+                <br>
+                <input class="input" type="number" formControlName="closedExitPrice" placeholder="Enter the Average Price" >
+                <div *ngIf="closedPositionForm.get('closedExitPrice').hasError('required')" class="error">Closed Exit Price is required.</div>
+                <div *ngIf="closedPositionForm.get('closedExitPrice').hasError('pattern')" class="error">Invalid Closed Exit Price format. Use up to 2 decimal places..</div>
+              </div>
+        </div>
+     </div>
+            
+     <div class="row" style="padding: 20px;">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="formGroup">
+             Coin Title
+          </label>
+          <br>
+          <input type="text" class="input" formControlName="closedCoinTitle" placeholder="BTC/USDT" >
+          <div *ngIf="closedPositionForm.get('closedCoinTitle').hasError('required')" class="error">Coin Title is required.</div>
+          <div *ngIf="closedPositionForm.get('closedCoinTitle').hasError('maxlength')" class="error">Coin Title cannot exceed 5 characters.</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+          <div class="form-group">
+              <label class="formGroup">
+                  Percentage
+              </label>
+              <br>
+              <input class="input" type="text" formControlName="closedPercentage" placeholder="Enter the Portfolio" >
+              <div *ngIf="closedPositionForm.get('closedPercentage').hasError('required')" class="error">Portfolio is required.</div>
+              <div *ngIf="closedPositionForm.get('closedPercentage').hasError('maxlength')" class="error">Portfolio cannot exceed 5 characters.</div>
+            </div>
+
+      </div>
+      <div class="col-md-3">
+          <div class="form-group">
+              <label class="formGroup">
+                  Short/Long
+              </label>
+              <br>
+              <!-- <input class="input" type="text" formControlName="coinName33" placeholder="Select the Category" > -->
+              <select style="color: black;" formControlName="closedshortlong">Select the Category
+                <option [value]="1">Long</option>
+                <option [value]="0">Short</option>
+              </select>
+              <div *ngIf="closedPositionForm.get('closedshortlong').hasError('required')" class="error">Short/Long is required.</div>
+              <div *ngIf="closedPositionForm.get('closedshortlong').hasError('maxlength')" class="error">Short/Long cannot exceed 5 characters.</div>
+            </div>
+`
+      </div>
+      <div class="col-md-3">
+          <div class="form-group">
+              <label class="formGroup">
+                 Status
+              </label>
+              <br>
+              <select style="color: black;" formControlName="closedstatus">Select the Category
+                <option [value]="true">Enable</option>
+                <option [value]="false">Disable</option>
+              </select>
+            </div>
+
+      </div>
+   </div>
+
+     <div class="row text-center mt-4">
+        <button (click)="onSubmitClosed()"  style="width: 200px;margin-left: 40%;" class="docFavSaveBtn" type="submit">Save</button>
+     </div>
+    </form>     
+  </ng-container>       
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- popup.component.html -->
+
+<footer class="pc-footer">
+  <div class="footer-wrapper container-fluid">
+    <div class="row">
+      <div class="col my-1">
+        <p class="m-0"> Copyright &copy; <a href="" target="_blank">L-earn Design and Developed by Boom Tech</a> </p>
+      </div>
+      <div class="col-auto my-1">
+        <ul class="list-inline footer-link mb-0">
+          <li class="list-inline-item"><a href="/" target="_blank">Home</a></li>
+          <li class="list-inline-item">
+            <a href="/privacy-policy/" target="_blank">Privacy Policy</a>
+          </li>
+          <li class="list-inline-item"><a href="" target="_blank">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<app-configuration></app-configuration>

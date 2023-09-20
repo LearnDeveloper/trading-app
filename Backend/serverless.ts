@@ -84,6 +84,42 @@ const serverlessConfiguration: AWS = {
 
         }]
     },
+    stripe: {
+      handler: "src/stripe.handler",
+      events: [
+        {
+          http: {
+            path: 'stripe',
+            method: 'post',
+            cors: true,
+          },
+
+        }]
+    },  
+    createposition: {
+      handler: "src/createPositions.handler",
+      events: [
+        {
+          http: {
+            path: 'createposition',
+            method: 'post',
+            cors: true,
+          },
+
+        }]
+    }, 
+    getposition: {
+      handler: "src/getpositions.handler",
+      events: [
+        {
+          http: {
+            path: 'getposition',
+            method: 'post',
+            cors: true,
+          },
+
+        }]
+    }, 
   }
 
   // import the function via paths

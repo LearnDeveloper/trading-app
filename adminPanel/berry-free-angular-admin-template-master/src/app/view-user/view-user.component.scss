@@ -1,0 +1,199 @@
+.button-container {
+    text-align: right;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .ngx-datatable.material {
+    min-height: 300px;
+  }
+  
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.1);
+    transition: opacity 500ms;
+    /* visibility: hidden; */
+    opacity: 1;
+  }
+  
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.1);
+    transition: opacity 500ms;
+    /* visibility: hidden; */
+    opacity: 1;
+  }
+  
+  .popupNew{
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    /* width: 30%; */
+    position: relative;
+    transition: all 5s ease-in-out;
+    top: 50%;
+    left: 50%;
+  
+    border: 1px solid #666;
+    position: fixed;
+    z-index: 9999;
+    overflow: auto;
+  }
+  
+  .popupSuccess {
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    /* width: 30%; */
+    position: relative;
+    transition: all 5s ease-in-out;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #666;
+    position: fixed;
+    z-index: 4;
+    overflow: auto;
+  
+  }
+  
+  .popup {
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    /* width: 30%; */
+    position: relative;
+    transition: all 5s ease-in-out;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #666;
+    position: fixed;
+    z-index: 4;
+    overflow: auto;
+    height : -webkit-fill-available
+  }
+  
+  .popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+  }
+  .popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  .popup .close:hover {
+    color: #06D85F;
+  }
+  .popup {
+    // max-height: 58%;
+    // overflow: auto;
+  }
+  
+  .content {
+    /* max-height: 58%; */
+    /* overflow: auto; */
+  }
+  
+  
+  .collectionsBtn{
+    margin-top:1rem;
+    color: blue;
+    text-decoration: underline;
+  }
+  
+  .renameBtn{
+    text-align: center;
+    margin-top:1rem;
+    margin-bottom: 1rem;
+  }
+  
+  
+  .docFavCancleBtn{
+    background: #fff;
+  border: 1px solid #cbd7dd;
+  color: teal;
+  /* position:absolute; */
+  padding: 0px 0px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 5rem;
+  height: 2rem;
+
+  background: linear-gradient(to right, teal 50%, white 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all .3s ease-out;
+  
+  }
+  
+  .docFavSaveBtn{
+    background-color: #1877f2 ;
+  border: 0px solid gray;
+  color: #fff;
+  padding: 0px 0px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 70px;
+  width: 5rem;
+  height: 2rem;
+  font-size: 14px;
+  background-position: right bottom;
+  transition: all .3s ease-out;
+  }
+
+  .divContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+
+input select{
+  background-color: #ECECEC !important;
+}
+
+select{
+  width: 170px;
+  padding: 10px 30px 10px 10px; /* Add right padding for the icon */
+  margin-bottom: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 10px 30px 10px 10px; /* Add right padding for the icon */
+  margin-bottom: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}

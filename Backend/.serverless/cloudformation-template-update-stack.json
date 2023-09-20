@@ -101,6 +101,24 @@
         "LogGroupName": "/aws/lambda/trading-api-dev-resend"
       }
     },
+    "StripeLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/trading-api-dev-stripe"
+      }
+    },
+    "CreatepositionLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/trading-api-dev-createposition"
+      }
+    },
+    "GetpositionLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/trading-api-dev-getposition"
+      }
+    },
     "IamRoleLambdaExecution": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -185,7 +203,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/trading-api/dev/1694625641939-2023-09-13T17:20:41.939Z/trading-api.zip"
+          "S3Key": "serverless/trading-api/dev/1695243699485-2023-09-20T21:01:39.485Z/trading-api.zip"
         },
         "Handler": "src/createUser.handler",
         "Runtime": "nodejs14.x",
@@ -215,7 +233,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/trading-api/dev/1694625641939-2023-09-13T17:20:41.939Z/trading-api.zip"
+          "S3Key": "serverless/trading-api/dev/1695243699485-2023-09-20T21:01:39.485Z/trading-api.zip"
         },
         "Handler": "src/login.handler",
         "Runtime": "nodejs14.x",
@@ -245,7 +263,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/trading-api/dev/1694625641939-2023-09-13T17:20:41.939Z/trading-api.zip"
+          "S3Key": "serverless/trading-api/dev/1695243699485-2023-09-20T21:01:39.485Z/trading-api.zip"
         },
         "Handler": "src/getuser.handler",
         "Runtime": "nodejs14.x",
@@ -275,7 +293,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/trading-api/dev/1694625641939-2023-09-13T17:20:41.939Z/trading-api.zip"
+          "S3Key": "serverless/trading-api/dev/1695243699485-2023-09-20T21:01:39.485Z/trading-api.zip"
         },
         "Handler": "src/verifyotp.handler",
         "Runtime": "nodejs14.x",
@@ -305,7 +323,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/trading-api/dev/1694625641939-2023-09-13T17:20:41.939Z/trading-api.zip"
+          "S3Key": "serverless/trading-api/dev/1695243699485-2023-09-20T21:01:39.485Z/trading-api.zip"
         },
         "Handler": "src/resend.handler",
         "Runtime": "nodejs14.x",
@@ -328,54 +346,174 @@
         "ResendLogGroup"
       ]
     },
-    "CreateuserLambdaVersiony1ueoTLe5v47oHz209bCzju56wT7hRCyyKSZu20pzxk": {
+    "StripeLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/trading-api/dev/1695243699485-2023-09-20T21:01:39.485Z/trading-api.zip"
+        },
+        "Handler": "src/stripe.handler",
+        "Runtime": "nodejs14.x",
+        "FunctionName": "trading-api-dev-stripe",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "MONGODB_URI": "mongodb+srv://learn-admin:learn-admin@trading-app-dev.ilaxkyy.mongodb.net/?retryWrites=true&w=majority"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "StripeLogGroup"
+      ]
+    },
+    "CreatepositionLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/trading-api/dev/1695243699485-2023-09-20T21:01:39.485Z/trading-api.zip"
+        },
+        "Handler": "src/createPositions.handler",
+        "Runtime": "nodejs14.x",
+        "FunctionName": "trading-api-dev-createposition",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "MONGODB_URI": "mongodb+srv://learn-admin:learn-admin@trading-app-dev.ilaxkyy.mongodb.net/?retryWrites=true&w=majority"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "CreatepositionLogGroup"
+      ]
+    },
+    "GetpositionLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/trading-api/dev/1695243699485-2023-09-20T21:01:39.485Z/trading-api.zip"
+        },
+        "Handler": "src/getpositions.handler",
+        "Runtime": "nodejs14.x",
+        "FunctionName": "trading-api-dev-getposition",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "MONGODB_URI": "mongodb+srv://learn-admin:learn-admin@trading-app-dev.ilaxkyy.mongodb.net/?retryWrites=true&w=majority"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "GetpositionLogGroup"
+      ]
+    },
+    "CreateuserLambdaVersionqBdUGMlVbeLejYoI1yLZPKGiLeQgzWODwHA3ALpgMA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreateuserLambdaFunction"
         },
-        "CodeSha256": "bzjJGCgauXFO+10YwoNEoJ7wpaXpbLBK2ALMF5lAJx8="
+        "CodeSha256": "PQIFe5mM/kDPXdaC2h8KKzEVsfC0p18Q0MW2aTDB7k0="
       }
     },
-    "LoginLambdaVersionU3wlYmuFemZujNc0Kv0pYjd76fbzGHmOCoNePULik": {
+    "LoginLambdaVersionMd9xaTaL7qrvOapZ10I2UiXeTuh5sNmwrGoVDPtOm24": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "LoginLambdaFunction"
         },
-        "CodeSha256": "bzjJGCgauXFO+10YwoNEoJ7wpaXpbLBK2ALMF5lAJx8="
+        "CodeSha256": "PQIFe5mM/kDPXdaC2h8KKzEVsfC0p18Q0MW2aTDB7k0="
       }
     },
-    "GetusersLambdaVersion5m0ZUF1ljyVS94gH6jQjegOsM5wUecM2i9TQVoVS8": {
+    "GetusersLambdaVersionhuZiL0sNvOfRE1DPme802ninqDmKWoE2tKP4iDLjEk": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetusersLambdaFunction"
         },
-        "CodeSha256": "bzjJGCgauXFO+10YwoNEoJ7wpaXpbLBK2ALMF5lAJx8="
+        "CodeSha256": "PQIFe5mM/kDPXdaC2h8KKzEVsfC0p18Q0MW2aTDB7k0="
       }
     },
-    "VerifyotpLambdaVersionDNa7V8wT67DnC7IaksYi6rjVVS6VbduKEYnvO9Hwqo": {
+    "VerifyotpLambdaVersionzUcIbj5sI0AV2LvTE4omHdD3HvmIaU5vg5XryO4BoY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "VerifyotpLambdaFunction"
         },
-        "CodeSha256": "bzjJGCgauXFO+10YwoNEoJ7wpaXpbLBK2ALMF5lAJx8="
+        "CodeSha256": "PQIFe5mM/kDPXdaC2h8KKzEVsfC0p18Q0MW2aTDB7k0="
       }
     },
-    "ResendLambdaVersion7yJmDX9RRs87zKpMKaF55zMQWq3vDYoQ6FgXk2A": {
+    "ResendLambdaVersionTwKxFbZKckFnlNiDBoJgnC5Hd5FMDqpEqb67UEZPo8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ResendLambdaFunction"
         },
-        "CodeSha256": "bzjJGCgauXFO+10YwoNEoJ7wpaXpbLBK2ALMF5lAJx8="
+        "CodeSha256": "PQIFe5mM/kDPXdaC2h8KKzEVsfC0p18Q0MW2aTDB7k0="
+      }
+    },
+    "StripeLambdaVersionUKrT7n5nYPljhqLa2zlfkyuwoZDlgiLy1Alb7KHMA": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "StripeLambdaFunction"
+        },
+        "CodeSha256": "PQIFe5mM/kDPXdaC2h8KKzEVsfC0p18Q0MW2aTDB7k0="
+      }
+    },
+    "CreatepositionLambdaVersionPfa9CXURUJIygFazRKDSKkFyTN6EZGjmkpy3looqy4": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "CreatepositionLambdaFunction"
+        },
+        "CodeSha256": "PQIFe5mM/kDPXdaC2h8KKzEVsfC0p18Q0MW2aTDB7k0="
+      }
+    },
+    "GetpositionLambdaVersionAZRKDLd2sbeGfGqmNL7bRc2Soyz2NbsUsqdhpcOoHno": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "GetpositionLambdaFunction"
+        },
+        "CodeSha256": "PQIFe5mM/kDPXdaC2h8KKzEVsfC0p18Q0MW2aTDB7k0="
       }
     },
     "ApiGatewayRestApi": {
@@ -461,6 +599,51 @@
           ]
         },
         "PathPart": "resend",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceStripe": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "stripe",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceCreateposition": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "createposition",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceGetposition": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "getposition",
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -685,6 +868,141 @@
         },
         "ResourceId": {
           "Ref": "ApiGatewayResourceResend"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodStripeOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceStripe"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodCreatepositionOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceCreateposition"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodGetpositionOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceGetposition"
         },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
@@ -921,7 +1239,145 @@
         "ResendLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1694625627871": {
+    "ApiGatewayMethodStripePost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceStripe"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "StripeLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      },
+      "DependsOn": [
+        "StripeLambdaPermissionApiGateway"
+      ]
+    },
+    "ApiGatewayMethodCreatepositionPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceCreateposition"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "CreatepositionLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      },
+      "DependsOn": [
+        "CreatepositionLambdaPermissionApiGateway"
+      ]
+    },
+    "ApiGatewayMethodGetpositionPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceGetposition"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "GetpositionLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      },
+      "DependsOn": [
+        "GetpositionLambdaPermissionApiGateway"
+      ]
+    },
+    "ApiGatewayDeployment1695243683456": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -935,11 +1391,17 @@
         "ApiGatewayMethodGetallusersOptions",
         "ApiGatewayMethodVerifyotpOptions",
         "ApiGatewayMethodResendOptions",
+        "ApiGatewayMethodStripeOptions",
+        "ApiGatewayMethodCreatepositionOptions",
+        "ApiGatewayMethodGetpositionOptions",
         "ApiGatewayMethodCreateuserPost",
         "ApiGatewayMethodLoginPost",
         "ApiGatewayMethodGetallusersPost",
         "ApiGatewayMethodVerifyotpPost",
-        "ApiGatewayMethodResendPost"
+        "ApiGatewayMethodResendPost",
+        "ApiGatewayMethodStripePost",
+        "ApiGatewayMethodCreatepositionPost",
+        "ApiGatewayMethodGetpositionPost"
       ]
     },
     "CreateuserLambdaPermissionApiGateway": {
@@ -1126,6 +1588,117 @@
           ]
         }
       }
+    },
+    "StripeLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "StripeLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "CreatepositionLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "CreatepositionLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "GetpositionLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "GetpositionLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
     }
   },
   "Outputs": {
@@ -1140,7 +1713,7 @@
     "CreateuserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreateuserLambdaVersiony1ueoTLe5v47oHz209bCzju56wT7hRCyyKSZu20pzxk"
+        "Ref": "CreateuserLambdaVersionqBdUGMlVbeLejYoI1yLZPKGiLeQgzWODwHA3ALpgMA"
       },
       "Export": {
         "Name": "sls-trading-api-dev-CreateuserLambdaFunctionQualifiedArn"
@@ -1149,7 +1722,7 @@
     "LoginLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "LoginLambdaVersionU3wlYmuFemZujNc0Kv0pYjd76fbzGHmOCoNePULik"
+        "Ref": "LoginLambdaVersionMd9xaTaL7qrvOapZ10I2UiXeTuh5sNmwrGoVDPtOm24"
       },
       "Export": {
         "Name": "sls-trading-api-dev-LoginLambdaFunctionQualifiedArn"
@@ -1158,7 +1731,7 @@
     "GetusersLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetusersLambdaVersion5m0ZUF1ljyVS94gH6jQjegOsM5wUecM2i9TQVoVS8"
+        "Ref": "GetusersLambdaVersionhuZiL0sNvOfRE1DPme802ninqDmKWoE2tKP4iDLjEk"
       },
       "Export": {
         "Name": "sls-trading-api-dev-GetusersLambdaFunctionQualifiedArn"
@@ -1167,7 +1740,7 @@
     "VerifyotpLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "VerifyotpLambdaVersionDNa7V8wT67DnC7IaksYi6rjVVS6VbduKEYnvO9Hwqo"
+        "Ref": "VerifyotpLambdaVersionzUcIbj5sI0AV2LvTE4omHdD3HvmIaU5vg5XryO4BoY"
       },
       "Export": {
         "Name": "sls-trading-api-dev-VerifyotpLambdaFunctionQualifiedArn"
@@ -1176,10 +1749,37 @@
     "ResendLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ResendLambdaVersion7yJmDX9RRs87zKpMKaF55zMQWq3vDYoQ6FgXk2A"
+        "Ref": "ResendLambdaVersionTwKxFbZKckFnlNiDBoJgnC5Hd5FMDqpEqb67UEZPo8"
       },
       "Export": {
         "Name": "sls-trading-api-dev-ResendLambdaFunctionQualifiedArn"
+      }
+    },
+    "StripeLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "StripeLambdaVersionUKrT7n5nYPljhqLa2zlfkyuwoZDlgiLy1Alb7KHMA"
+      },
+      "Export": {
+        "Name": "sls-trading-api-dev-StripeLambdaFunctionQualifiedArn"
+      }
+    },
+    "CreatepositionLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "CreatepositionLambdaVersionPfa9CXURUJIygFazRKDSKkFyTN6EZGjmkpy3looqy4"
+      },
+      "Export": {
+        "Name": "sls-trading-api-dev-CreatepositionLambdaFunctionQualifiedArn"
+      }
+    },
+    "GetpositionLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "GetpositionLambdaVersionAZRKDLd2sbeGfGqmNL7bRc2Soyz2NbsUsqdhpcOoHno"
+      },
+      "Export": {
+        "Name": "sls-trading-api-dev-GetpositionLambdaFunctionQualifiedArn"
       }
     },
     "ServiceEndpoint": {
