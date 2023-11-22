@@ -26,17 +26,19 @@ async function connectToDatabase() {
   return db;
 }
 
-async function resendOTP(email) {
-    var transport = nodemailer.createTransport({
-      pool: true,
-      host: "smtp.hostinger.com",
-      port: 465,
-      secure: true, // use TLS
-      auth: {
-        user: "notify@l-earn.pro",
-        pass: "Notify@2023l-earnPro",
-      },
-    });
+// async function sendOTP(payload): Promise<void> {
+
+async function resendOTP(email):Promise<void> {
+  const transporter = nodemailer.createTransport({
+    service: 'SMTP',
+    host: 'smtp.hostinger.com',
+    port: 465,
+    secure: true, // Set to true if your SMTP server requires a secure connection (e.g., for Gmail, set it to true)
+    auth: {
+        user: 'notify@l-earn.pro',
+        pass: 'Notify@2023l-earnPro',
+    },
+});
     
     console.log('SMTP Configured');
     
@@ -50,7 +52,7 @@ async function resendOTP(email) {
       to: email,
     
        // Subject of the message
-      subject: "check", //'Nodemailer is unicode friendly ✔', 
+      subject: "L-EARN OTP", //'Nodemailer is unicode friendly ✔', 
     
       // plaintext body
       //  text: "Hello" //'Hello to myself!',
@@ -61,33 +63,40 @@ async function resendOTP(email) {
       };
     
       console.log('Sending Mail');
-      transport.sendMail(message,  (error, info) => {
+      return new Promise<void>((resolve, reject) => {
+      transporter.sendMail(message,  (error, info) => {
         if (error) {
+          reject(error);
           console.error('Error sending email:', error);
         } else {
+          resolve( )
           console.log('Email sent:', info.response);
+          // let finalData =  info.response;
+          // return finalData;
         }
     });
+        });
     }
   
 
 
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
  
     let body = JSON.parse(event.body)
     console.log("body", body);
-    let email = body.email;
-    let otp = body.otp;
+    // let email = body.email;
+    // let otp = body.otp;
 
     // let body = {
-    //     email:"vikivikass41@gmail.com",
-    //     otp : 4178
+    //     email:"vikivikas41@gmail.com",
+    //     otp : ""
     // }
   
-//   let email = body.email;
-//     let otp = body.otp;
+  let email = body.email;
+    // let otp = body.otp;
   const db = await connectToDatabase();
+
 
   // // Make a MongoDB MQL Query to go into the movies collection and return the first 20 movies.
   const filter = { email: email };
@@ -96,34 +105,28 @@ exports.handler = async (event, context) => {
   const userDetails = await db
     .collection("LEARN_USERS")
     .updateOne(filter,update);
+  console.log("userDatai", userDetails);  
 
-    console.log(userDetails)
-    if(userDetails.matchedCount == 1){
-        const response = {
-            statusCode: 200,
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Headers": "*",
-            },
-            body: JSON.stringify({
-                data : userDetails,
-                responseCode : "1000"
-            }),
-          };
-        
-          return response;
-    }
-    else{
-        const response = {
-            statusCode: 200,
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Headers": "*",
-            },
-            body: JSON.stringify({error:"Unable to resend OTP",responseCode:'1001'}),
-          };
-        
-          return response
-    }
+  const emailResponse = await resendOTP(email);
+  console.log("email Reponse", emailResponse);
+  // if(emailResponse != '' || emailResponse != undefined || )
+  // {
 
+  // }
+  const response = {
+    statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "*",
+    },
+    body: JSON.stringify({
+        data : emailResponse,
+        responseCode : "1000"
+    }),
+  };
+  console.log("response", response);
+  return response;
+  // console.log("email Response", emailResponse);
+  // return emailResponse;
+  
 };

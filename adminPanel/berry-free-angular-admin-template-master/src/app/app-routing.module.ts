@@ -6,6 +6,12 @@ import { LoginComponent } from './demo/login/login.component';
 import { ViewUserComponent } from './view-user/view-user.component';
 import { AddPositionComponent } from './add-position/add-position.component';
 import { ViewPositionComponent } from './view-position/view-position.component';
+import { AddVideosComponent } from './add-videos/add-videos.component';
+import { ViewVideosComponent } from './view-videos/view-videos.component';
+import { AddPaymentComponent } from './add-payment/add-payment.component';
+import { ViewPaymentComponent } from './view-payment/view-payment.component';
+import { EditPaymentComponent } from './edit-payment/edit-payment.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
  {
@@ -14,15 +20,44 @@ const routes: Routes = [
  },
  {
   path:"view-user",
-  component : ViewUserComponent
+  component : ViewUserComponent,
+  canActivate : [AuthGuard]
  },
  {
   path:"add-position",
-  component : AddPositionComponent
+  component : AddPositionComponent,
+  canActivate : [AuthGuard]
  },
  {
   path:"view-position",
-  component : ViewPositionComponent
+  component : ViewPositionComponent,
+  canActivate : [AuthGuard]
+ },
+
+ {
+  path:"add-videos",
+  component : AddVideosComponent,
+  canActivate : [AuthGuard]
+ },
+ {
+  path:"view-videos",
+  component : ViewVideosComponent,
+  canActivate : [AuthGuard]
+ },
+ {
+  path:"add-payments",
+  component : AddPaymentComponent,
+  canActivate : [AuthGuard]
+ },
+ {
+  path:"view-payments",
+  component : ViewPaymentComponent,
+  canActivate : [AuthGuard]
+ },
+ {
+  path:"edit-payments",
+  component : EditPaymentComponent,
+  canActivate : [AuthGuard]
  },
  
   {
@@ -54,7 +89,8 @@ const routes: Routes = [
         path: 'sample-page',
         loadComponent: () => import('./demo/sample-page/sample-page.component')
       }
-    ]
+    ],
+    canActivate : [AuthGuard]
   },
   // {
   //   path: '',

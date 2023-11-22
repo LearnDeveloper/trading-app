@@ -1,0 +1,55 @@
+<div class="container" style="overflow-y: hidden !important;">
+    <form>
+      <div class="form-group mt-2">
+        <label  for="principal">Initial investment in $:</label>
+        <input type="number" id="principal" name="principal" [(ngModel)]="principal" class="form-control">
+      </div>
+      <div class="form-group mt-2">
+        <label for="rate">Monthly Profit (%):</label>
+        <input type="number" id="rate" name="interestRate" [(ngModel)]="rate" class="form-control">
+      </div>
+      <div class="form-group mt-2">
+        <label for="time">Time Period (years):</label>
+        <input type="number" id="time" name="timePeriod" [(ngModel)]="time" class="form-control">
+      </div>
+      <!-- <div class="form-group mt-2">
+        <label for="compoundFrequency">Compounding Frequency (per year):</label>
+        <input type="number" id="compoundFrequency" [(ngModel)]="compoundFrequency" />
+      </div> -->
+      <button class="btn btn-primary mt-5" (click)="calculateCompoundInterest()">Calculate and Show Chart</button>
+    </form>
+  </div>
+  
+  <div class="container" style="overflow-y: hidden !important;">
+    <canvas #chartCanvas></canvas>
+    <div style="padding: 15px;">
+      <h2 style="font-weight: 600;">Results</h2>
+      <div class="row">
+        <div class="result mt-2">
+          <p>Principal Amount : <span style="font-weight: 800;font-size:16px">$ {{ principal }}</span></p>
+          <!-- <p style="font-weight: 800;font-size:16px"></p> -->
+        </div>
+        <div class="result mt-2">
+          <p>Monthly Interest Rate : <span style="font-weight: 800;font-size:16px">{{ rate }}%</span></p>
+          <!-- <p style="font-weight: 800;font-size:16px">{{ rate }}%</p> -->
+        </div>
+        <div class="result mt-2">
+          <p>Investment Time : <span style="font-weight: 800;font-size:16px">{{ time }} Year</span></p>
+          <!-- <p style="font-weight: 800;font-size:16px">{{ time }} years</p> -->
+        </div>
+        <div class="result mt-2">
+          <p>Interest Earned : <span style="font-weight: 800;font-size:16px">$ {{ totalInterestEarned !== undefined ? totalInterestEarned.toFixed(2) : '-' }}</span></p>
+          <!-- <p style="font-weight: 800;font-size:16px">${{ totalInterestEarned !== undefined ? totalInterestEarned.toFixed(2) : '-' }}</p> -->
+        </div>
+        <div class="result mt-2">
+          <p>Future Value : <span style="font-weight: 800;font-size:16px">$ {{ futureValue !== undefined ? futureValue.toFixed(2) : '-' }}</span></p>
+          <!-- <p style="font-weight: 800;font-size:16px">${{ futureValue !== undefined ? futureValue.toFixed(2) : '-' }}</p> -->
+        </div>
+
+      </div>
+
+    </div>
+    
+   
+  </div>
+  

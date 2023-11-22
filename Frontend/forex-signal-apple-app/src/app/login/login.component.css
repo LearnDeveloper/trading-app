@@ -1,0 +1,291 @@
+/* .login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .logo img {
+    width: 115px;
+    margin-bottom: 20px;
+  }
+  
+  .title h1 {
+    font-size: 24px;
+    color: #000;
+    
+    font-style: normal;
+    font-weight: 500;
+
+  }
+  
+  .title p {
+    font-size: 14px;
+    color: #252525;
+    
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+  
+  .form-group {
+    text-align: left;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 14px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .social-icons button {
+    display: block;
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+ */
+
+ /* Import the Font Awesome CSS if you haven't already */
+/* You can get it from https://fontawesome.com/ */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+.facebook-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: #1877f2; /* Facebook blue */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 5rem;
+}
+
+.facebook-button i {
+    font-size: 24px;
+    /* margin-right: 10px; */
+}
+
+.facebook-button span {
+    font-size: 18px;
+}
+
+.facebook-button:hover {
+    background-color: #1057c7; /* Darker shade of Facebook blue on hover */
+}
+
+
+.main{
+    font-family: 'Montserrat', sans-serif;
+}
+
+ .login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .logo img {
+    width: 175px;
+    /* height: 100px; */
+    margin-bottom: 20px;
+  }
+  
+  .title h1 {
+    font-size: 24px;
+    color: #000;
+    
+    font-style: normal;
+    font-weight: 500;
+
+  }
+  
+  .title p {
+    font-size: 14px;
+    color: #252525;
+    
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+  
+  .form-group {
+    text-align: left;
+    margin-bottom: 15px;
+  }
+  
+
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  .remember-forgot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  
+  .forgot-password-link {
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+    /* font-weight: 800; */
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    /* font-size: 16px; */
+  }
+
+  .buttonlogin {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 100px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .fb {
+    background-color: #3B5998;
+    color: white;
+  }
+  
+  .social-icons button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 2rem;
+  }
+  
+
+  .continueText{
+    color: #575757;
+
+font-size: 10px;
+font-style: normal;
+font-weight: 300;
+line-height: 77px; /* 770% */
+letter-spacing: 0.9px;
+  }
+
+  .registerNow {
+    color: #206EEC;
+
+font-size: 13px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+  }
+
+  .newMember{
+    color: #252525;
+text-align: center;
+
+font-size: 13px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+  }
+
+  .password-input {
+    position: relative;
+  }
+  
+  .password-input input {
+    width: 100%;
+    padding: 10px 30px 10px 10px; /* Add right padding for the icon */
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .fa {
+    position: absolute;
+    top: 40%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
+  /* label{
+    font-size: 15px;
+  } */
+
+  .input-container {
+    position: relative;
+  }
+  
+  .input-container input {
+    width: 100%;
+    /* padding: 10px 30px 10px 10px; Add right padding for the icon */
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .fa-times-circle {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #ccc;
+  }
+  
+  .fa-times-circle:hover {
+    color: red;
+  }
+  
+  

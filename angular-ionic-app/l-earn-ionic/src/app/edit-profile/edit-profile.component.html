@@ -1,0 +1,115 @@
+
+<div class="profileContainer" style="height: 150px;">
+    <div class="backBtn">
+        <span routerLink="/account-info" >< Back</span>
+    </div>
+</div>
+<div style="text-align:-webkit-center;">
+    <div class="profile-circle">
+        {{nickName}}
+    </div>
+    <div class="premiumMember mt-2">
+        <span>Premium Member</span>
+    </div>
+    
+</div>
+
+<div class="signup-container">
+<!-- 
+    <div class="logo mb-5">
+      <img src="../../assets/images/Logo.png" alt="Logo">
+    </div> -->
+    <div class="title">
+      <h1>Edit Profile</h1>
+    </div>
+    <form [formGroup]="signupForm">
+      <div class="form-group">
+        <!-- <label for="fullName">Full Name</label> -->
+        <div class="input-container">
+            <input style="background-color: white;" type="text" onkeydown="return /^[A-Za-z,& ]+$/i.test(event.key)" oncopy="return false" onpaste="return false" id="fullName" placeholder="Full Name" formControlName="fullName" required>
+            <i
+            class="fa fa-user-o " style="color: gray !important;"
+          ></i>
+ 
+          <!-- <div *ngIf="signupForm.get('fullName').hasError('maxlength')">
+            Maximum 15 characters allowed.
+          </div> -->
+         </div>   
+         <div style="color: red;" *ngIf="signupForm.get('fullName').hasError('invalidInput')">
+          Maximum 25 characters allowed, and only 3 spaces are allowed.
+        </div>
+      </div>
+      <span (click)="showMessage()" >
+        <div class="form-group" style="pointer-events: none;">
+          <!-- <label for="email">Email</label> -->
+          <div class="input-container-email">
+          <input  style="background-color: #C4C4C433  !important;" placeholder="Valid Email" type="email"  formControlName="email" [disabled]="emailFlag">
+          <i
+          class="fa fa-envelope-o " style="color: gray !important;"
+        ></i>
+  
+        </div>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
+          <div *ngIf="email.errors.required">Email is required.</div>
+          <div *ngIf="email.errors.email">Invalid email format.</div>
+        </div>
+        </div>
+      </span>
+
+      <div class="form-group">
+        <!-- <label for="phone">Phone Number</label> -->
+        <div class="input-container-tel">
+        <input style="background-color: white !important;" type="number"  onKeyPress="if(this.value.length==12) return false;" id="phone" placeholder="Valid Phone Number" formControlName="phone" required>
+        <i
+        class="fa fa-mobile " style="color: gray !important;font-size: 25px;"
+      ></i>
+      </div>
+      </div>
+      <!-- <div class="form-group">
+        <label for="password">Password</label>
+        <input style="background-color: #ECECEC;" type="password" id="password" formControlName="password" required>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
+          <div *ngIf="password.errors.required">Password is required.</div>
+          <div *ngIf="password.errors.pattern">
+            Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.
+          </div>
+        </div>
+      </div> -->
+      <div class="form-group">
+        <!-- <label for="password">Password</label> -->
+        <div class="password-input">
+          <input
+            type="{{ hidePassword ? 'password' : 'text' }}"
+            id="password"
+            formControlName="password"
+            required
+            style="background-color: white"
+            placeholder="Password"
+          >
+          <i
+            style="color: gray !important;"
+            class="fa" 
+            [ngClass]="{'fa-eye ': hidePassword, 'fa-eye-slash ': !hidePassword}"
+            (click)="togglePasswordVisibility()"
+          ></i>
+        </div>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
+          <div *ngIf="password.errors.required">Password is required.</div>
+          <div *ngIf="password.errors.pattern">
+            Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.
+          </div>
+        </div>
+      </div>
+      <button [disabled]="signupForm.get('fullName').hasError('invalidInput')" (click)="editProfile()" type="submit">Save</button>
+    </form>
+  </div>
+  
+  
+<div class="mt-5">
+    <app-footer></app-footer>
+</div>
+
+
+<!-- main.component.html -->
+<app-preloader *ngIf="loading"></app-preloader>
+<!-- Your main content here -->

@@ -19,6 +19,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 // Project import
 
@@ -29,7 +30,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ViewUserComponent {
   // public props
-  displayedColumns: string[] = ['user id', 'full name', 'email','phone number','is Active','device details', 'Action']; // Replace with your column names
+  displayedColumns: string[] = ['user id', 'full name', 'email','phone number','is Active','device details','referral', 'Action']; // Replace with your column names
   dataSource: MatTableDataSource<any>;
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -51,7 +52,9 @@ export class ViewUserComponent {
     private locationStrategy: LocationStrategy,
     private dataservice : DataService,
     public dialog: MatDialog,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr : ToastrService,
+
   ) {
     this.berryConfig = BerryConfig;
 
@@ -86,7 +89,7 @@ export class ViewUserComponent {
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', [Validators.required]],
       fullName: ['', [Validators.required]],
-      language: ['', [Validators.required]],
+      Subscribed: ['', [Validators.required]],
       userId: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       active : [''],
@@ -104,9 +107,12 @@ export class ViewUserComponent {
   data : any;
   editpopup : boolean = false;
 
+  userData : any;
+
   fetchData(): void {
     this.dataservice.getUser().subscribe((result) => {
       // this.data = result;
+      this.userData = result;
       this.dataSource = new MatTableDataSource(result);;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -125,17 +131,73 @@ editPopup(element) {
   console.log(element);
  this.editpopup = true;
  this.userForm.setValue({
-  email: [element.full_name],
+  email: [element.email],
   phoneNumber: [element.Phone_Number],
   fullName: element.full_name,
-  language : [element.isactive],
+  Subscribed : [element.isSubscribed],
   userId : [element.user_id],
   password : [element.password],
   active : [element.isActive],
   banned : [element.isBanned]
-
 });
 
+}
+isBannedBoolean : any;
+isActiveBoolean : any;
+editData(){
+  console.log("data", this.userForm.value);
+  let payload = this.userForm.value
+
+  if(payload.banned == "true"){
+   this.isBannedBoolean = true;
+  }
+  else{
+    this.isBannedBoolean = false;
+  }
+
+  if(payload.active == true){
+    this.isActiveBoolean = true;
+   }
+   else{
+     this.isActiveBoolean = false;
+   }
+  
+  let constrcutPayload = {
+    "email": payload.email[0],
+    "phoneNumber": payload.phoneNumber[0],
+    "fullName": this.userForm.get('fullName').value,
+    "Subscribed": payload.Subscribed[0],
+    "userId": payload.userId[0],
+    "password": payload.password[0],
+    "active": this.isActiveBoolean,
+    "banned": this.isBannedBoolean
+}
+
+console.log("constrcutPayload",constrcutPayload);
+  this.dataservice.editProfile(constrcutPayload).subscribe((result) => {
+    console.log(result);
+    this.editpopup = false;
+    this.fetchData();
+    this.showSuccess("Edited Successfully")
+  });
+}
+
+referalFlag : boolean = false;
+referredDetails : any;
+async referredCode(element){
+  var referred_code = element.referred_code;
+  console.log("referred_code",referred_code);
+  this.referredDetails = this.userData.filter(x => x.referred_code == element.refferral_code);
+  console.log("referredDetails",this.referredDetails);
+  this.referalFlag = true;
+}
+
+showError(msg:any) {
+  this.toastr.error(msg);
+}
+
+showSuccess(msg:any) {
+  this.toastr.success(msg);
 }
 
 

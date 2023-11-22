@@ -1,0 +1,45 @@
+<app-user-header></app-user-header>
+<div (click)="sendMail()" class="letter-image">
+    <div class="animated-mail">
+      <div class="back-fold"></div>
+      <div class="letter" style="font-weight: 800;">
+        <div class="letter-border"></div>
+        <div class="letter-title">Thank you<br>
+            <span style="padding: 10px;" class="mt-2">
+                {{userData.full_name}}
+                <br>
+                <br>
+            </span>
+            <span  class="mt-2">
+                Course details are shared to your {{userData.email}}
+            </span>
+<br>
+<br>
+            <span  class="mt-2">
+                With ❤️
+                <br>
+                L-EARN
+            </span>
+
+        </div>
+        <div class="letter-context">
+  
+
+
+
+
+        </div>
+        <div class="letter-stamp">
+          <div class="letter-stamp-inner">
+          </div>
+          
+        </div>
+      </div>
+      <div class="top-fold"></div>
+      <div class="body"></div>
+      <div class="left-fold"></div>
+    </div>
+    <div class="shadow"></div>
+  </div>
+
+  <app-footer></app-footer>

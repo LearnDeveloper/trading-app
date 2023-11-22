@@ -1,0 +1,29 @@
+<app-user-header></app-user-header>
+<div class="backBtn">
+    <span routerLink="/account-info">< Back</span>
+</div>
+<div class="row mt-1" style="padding: 10px;">
+    <span class="text3"
+      style="padding: 8px;text-align: center;background-color:#007bff;font-weight: 800;color: white;border-radius: 40px;">Contact Us</span>
+</div>
+
+<form class="container mt-5" action="https://api.form-data.com/f/wfwaefcrx62rsp1g1pf2k" method="post">
+    <h2 class="text-center mb-4">Contact Us</h2>
+    <div class="form-group mb-3">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" placeholder="Your Name" [@fadeInAnimation]>
+    </div>
+  
+    <div class="form-group mb-3">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" placeholder="Your Email" [@fadeInAnimation]>
+    </div>
+  
+    <div class="form-group mb-3">
+      <label for="message">Message</label>
+      <textarea class="form-control" id="message" rows="4" placeholder="Your Message" [@fadeInAnimation]></textarea>
+    </div>
+  
+    <button (click)="sendMail()" type="submit" class="btn btn-primary btn-block" [@fadeInAnimation]>Submit</button>
+  </form>
+  

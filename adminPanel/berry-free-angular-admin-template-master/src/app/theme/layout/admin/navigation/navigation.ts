@@ -28,7 +28,7 @@ const NavigationItems = [
         title: 'Dashboard',
         type: 'item',
         classes: 'nav-item',
-        url: '/default',
+        url: '/admin/default',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       }
@@ -104,19 +104,19 @@ const NavigationItems = [
         icon: 'ti ti-user',
         children: [
           {
-            id: 'view-users',
-            title: 'view-Videos',
+            id: 'add-videos',
+            title: 'add-videos',
             type: 'item',
-            url: '/view-Videos',
+            url: '/add-videos',
             target: false,
             breadcrumbs: false
           },
           {
-            id: 'edit-Videos',
-            title: 'add-Videos',
+            id: 'view-Videos',
+            title: 'view-videos',
             type: 'item',
-            url: '/add-Videos',
-            target: true,
+            url: '/view-videos',
+            target: false,
             breadcrumbs: false
           },
           {
@@ -131,6 +131,24 @@ const NavigationItems = [
       }
     ]
   },
+  // {
+  //   id: 'payments',
+  //   title: 'payments',
+  //   type: 'group',
+  //   icon: 'icon-navigation',
+  //   children: [
+  //     {
+  //       id: 'payments',
+  //       title: 'payments',
+  //       type: 'collapse',
+  //       url: '/view-payments',
+  //       icon: 'ti ti-user',
+  //       target: false,
+  //       breadcrumbs: false
+  //     }
+  //   ]
+  // },
+
   {
     id: 'payments',
     title: 'payments',
@@ -140,34 +158,11 @@ const NavigationItems = [
       {
         id: 'payments',
         title: 'payments',
-        type: 'collapse',
+        type: 'item',
+        classes: 'nav-item',
         icon: 'ti ti-user',
-        children: [
-          {
-            id: 'view-payments',
-            title: 'view-payments',
-            type: 'item',
-            url: '/view-payments',
-            target: false,
-            breadcrumbs: false
-          },
-          {
-            id: 'edit-payments',
-            title: 'add-payments',
-            type: 'item',
-            url: '/add-payments',
-            target: true,
-            breadcrumbs: false
-          },
-          {
-            id: 'edit-payments',
-            title: 'edit-payments',
-            type: 'item',
-            url: '/edit-payments',
-            target: true,
-            breadcrumbs: false
-          },
-        ]
+        url: '/view-payments',
+        breadcrumbs: false
       }
     ]
   },

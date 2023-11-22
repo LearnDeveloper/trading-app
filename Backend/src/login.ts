@@ -90,7 +90,12 @@ exports.handler = async (event, context) => {
     // console.log("eventData pass",eventData.password);
     // console.log("eventData email 0",eventData[0].email);
     // console.log("eventData pass 0",eventData.password);
+  //   let testevent = {
+  //     "email": "vikas@gmail.com",
+  //     "password": "System@123"
+  // }
     let body = JSON.parse(event.body)
+    // let body = testevent;
     console.log("body", body);
     let email = body.email;
     console.log("email", email);
@@ -102,12 +107,11 @@ exports.handler = async (event, context) => {
     // // Make a MongoDB MQL Query to go into the movies collection and return the first 20 movies.
     const userDetails = await db
       .collection("LEARN_USERS")
-      .find({email})
-      .toArray();
+      .findOne({email: body.email})
 
-      console.log("user details", userDetails.length);
+      console.log("user details", userDetails);
 
-      if(userDetails.length != 1){
+      if(userDetails == undefined){
         const response = {
             statusCode: 200,
             headers: {
@@ -121,7 +125,7 @@ exports.handler = async (event, context) => {
           };
           return response;
       }
-   if(userDetails[0].password != password){
+   if(userDetails.password != password){
     const response = {
         statusCode: 200,
         headers: {

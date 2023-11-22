@@ -21,6 +21,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 // Project import
 @Component({
@@ -55,6 +56,7 @@ export class ViewPositionComponent {
     private locationStrategy: LocationStrategy,
     private dataservice : DataService,
     public dialog: MatDialog,
+    private toastr : ToastrService,
     private fb: FormBuilder
   ) {
     this.berryConfig = BerryConfig;
@@ -87,14 +89,15 @@ export class ViewPositionComponent {
   ngOnInit(): void {
     this.fetchData();
     this.userForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', [Validators.required]],
-      fullName: ['', [Validators.required]],
-      language: ['', [Validators.required]],
-      userId: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      active : [''],
-      banned : ['']
+      coinTitle: ['', [Validators.required, Validators.email]],
+      percentage: ['', [Validators.required]],
+      entryPrice: ['', [Validators.required]],
+      averagePrice: ['', [Validators.required]],
+      takeProfit: ['', [Validators.required]],
+      portfolio: ['', [Validators.required]],
+      status : [''],
+      shortlong : [''],
+      _id : ['']
     });
   }
 
@@ -138,19 +141,60 @@ editPopup(element) {
   console.log(element);
  this.editpopup = true;
  this.userForm.setValue({
-  email: [element.full_name],
-  phoneNumber: [element.Phone_Number],
-  fullName: element.full_name,
-  language : [element.isactive],
-  userId : [element.user_id],
-  password : [element.password],
-  active : [element.isActive],
-  banned : [element.isBanned]
+  coinTitle: element.coinTitle,
+  percentage: element.percentage,
+  entryPrice: element.entryPrice,
+  averagePrice: element.averagePrice,
+  takeProfit: element.takeProfit,
+  portfolio: element.portfolio,
+  status : element.status,
+  shortlong : element.shortlong,
+  _id : element._id
 
 });
 
 }
+isActiveBoolean :any;
+edit(){
+  console.log(this.userForm.value);
+  let payload = this.userForm.value
 
+
+  if(payload.status == "true"){
+    this.isActiveBoolean = true;
+   }
+   else{
+     this.isActiveBoolean = false;
+   }
+
+   let constructPayload = {
+    "coinTitle": payload.coinTitle,
+    "percentage": payload.percentage,
+    "entryPrice": payload.entryPrice,
+    "averagePrice": payload.averagePrice,
+    "takeProfit": payload.takeProfit,
+    "portfolio": payload.portfolio,
+    "status": this.isActiveBoolean,
+    "shortlong": payload.shortlong,
+    "_id" : payload._id
+}
+
+console.log("constructPayload",constructPayload);
+this.dataservice.editPosition(constructPayload).subscribe((result) => {
+  console.log(result);
+  this.editpopup = false;
+  this.fetchData();
+  this.showSuccess("Edited Successfully")
+});
+}
+
+showError(msg:any) {
+  this.toastr.error(msg);
+}
+
+showSuccess(msg:any) {
+  this.toastr.success(msg);
+}
 
 }
 

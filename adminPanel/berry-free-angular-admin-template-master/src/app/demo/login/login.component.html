@@ -31,7 +31,7 @@
         </div>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
-                <label for="text-input">email</label>
+                <!-- <label for="text-input">email</label> -->
                 <div class="input-container">
                   <input
                     type="text"
@@ -50,7 +50,7 @@
               </div>
               
           <div class="form-group">
-            <label for="password">password</label>
+            <!-- <label for="password">password</label> -->
             <div class="password-input">
               <input
                 type="{{ hidePassword ? 'password' : 'text' }}"
@@ -78,13 +78,13 @@
             </label>
             <!-- <a href="#" class="forgot-password-link">{{'forgotpassword' | translate}}?</a> -->
           </div>
-          <button class="buttonlogin mt-5 mb-5" type="submit" [disabled]="loginForm.invalid">Sign In ></button>
+          <button class="buttonlogin mb-5" type="submit" [disabled]="loginForm.invalid">Sign In ></button>
         </form>
-        <div class="row">
+        <!-- <div class="row">
             <div class="continueText text-center">
                 <span>Or continue with</span>
             </div>
-        </div>
+        </div> -->
       </div>
       
           

@@ -23,6 +23,7 @@ import {
   ApexStroke,
   ApexTooltip
 } from 'ng-apexcharts';
+import { DataService } from 'src/app/data.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -55,7 +56,7 @@ export default class DefaultComponent {
   colorChart = ['#673ab7'];
 
   // Constructor
-  constructor() {
+  constructor(private dataservice: DataService) {
     this.chartOptions = {
       series: [
         {
@@ -141,10 +142,61 @@ export default class DefaultComponent {
 
   // Life cycle events
   ngOnInit(): void {
+    this.fetchData();
+    this.fetchPayments();
+    this.fetchDataPositions();
     setTimeout(() => {
       this.monthChart = new ApexCharts(document.querySelector('#tab-chart-1'), this.monthOptions);
       this.monthChart.render();
     }, 500);
+  }
+  userLength: any;
+  fetchData(): void {
+    this.dataservice.getUser().subscribe((result) => {
+      this.userLength = result.length;
+    });
+  }
+
+  payments: any;
+  paymentTotal: any;
+  DecimalPayment : any;
+
+  fetchPayments(): void {
+    this.dataservice.fetchPayments().subscribe((result) => {
+      this.payments = result;
+      this.paymentTotal = this.payments.pending[0].amount;
+      // Input number
+      const inputNumber = this.paymentTotal;
+
+      // Convert the number to a string
+      const numberString = inputNumber.toString();
+
+      // Split the string into two parts: the part before the last two digits
+      // and the last two digits
+      const integerPart = numberString.slice(0, -2);
+      const decimalPart = numberString.slice(-2);
+
+      // Combine them with a decimal point in between and parse it as a float
+      const Finalresult = parseFloat(integerPart + '.' + decimalPart);
+      this.DecimalPayment = Finalresult; 
+      console.log("payments", this.payments);
+      console.log(this.paymentTotal);
+
+    });
+
+  }
+  positionsLatestLength: any;
+  positionsLatest: any;
+  openPosition: any;
+  closePosition: any;
+  fetchDataPositions(): void {
+    this.dataservice.getpositionfunction().subscribe((result) => {
+      console.log("results", result);
+      this.positionsLatest = result.splice(0, 5);
+      this.positionsLatestLength = result.length;
+      this.openPosition = result.filter((x: { category: string; }) => x.category == "opened").length;
+      this.closePosition = result.filter((x: { category: string; }) => x.category == "closed").length;
+    });
   }
 
   // public Method

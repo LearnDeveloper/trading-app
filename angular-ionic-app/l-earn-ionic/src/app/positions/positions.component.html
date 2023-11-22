@@ -1,0 +1,196 @@
+<app-user-header></app-user-header>
+
+<div class="row mt-1" style="padding: 15px;">
+  <span class="text3"
+    style="padding: 8px;text-align: center;background-color:#007bff;font-weight: 800;color: white;border-radius: 40px;font-size: 16px;">Positions</span>
+</div>
+<div class="row mt-1" style="padding: 5px;">
+  <ul style="border-radius: 5px;text-align: center;padding: 10px;margin-top: -10px;" class="nav nav-tabs" id="myTabs"
+    role="tablist">
+    <li class="nav-item" role="presentation" style="width: 50%;color: white;font-weight: 800;border-radius: 5px;">
+      <a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1"
+        aria-selected="true">Open</a>
+    </li>
+    <li class="nav-item" role="presentation" style="width: 50%;color: white;font-weight: 800;border-radius: 5px;">
+      <a class="nav-link" id="tab2-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2"
+        aria-selected="false">Closed</a>
+    </li>
+  </ul>
+
+
+  <div style="overflow-y: auto;">
+
+  <div class="tab-content mt-2" id="myTabsContent">
+    <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+      <!-- Content for Tab 1 -->
+      <div class="mb-3" *ngFor="let item of openPosition">
+
+        <span class="date">UTC+4: {{item.createdTime}} </span>
+        <div class="card">
+          <div class="card-header">
+            <div class="col-md-12">
+              <span class="sol">
+                {{item.coinTitle}}
+                <span *ngIf="item.shortlong == '1'" class="svgDiv">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="35" height="15" viewBox="0 0 19 12" fill="none">
+                    <path d="M1 11L6.66667 5L10.4444 9L18 1" stroke="#00A52E" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <path d="M14.2227 1H18.0004V5" stroke="#00A52E" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <span *ngIf="item.shortlong == '0'" class="svgDiv">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="35" height="15" viewBox="0 0 19 12" fill="none">
+                    <path d="M1 1L6.66667 7L10.4444 3L18 11" stroke="#E11818" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <path d="M14.2227 11H18.0004V7" stroke="#E11818" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </span>
+              <span class="value">
+                <span style="font-weight: 800;color: green;font-size: 16px;" *ngIf="item.shortlong == '1'">LONG</span>
+                <span style="font-weight: 800;color: red;font-size: 16px;" *ngIf="item.shortlong == '0'">SHORT</span>
+
+              </span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div style="display: flex;justify-content: space-between;margin-top: 5px;" class="col">
+
+              <span style="line-height: 0.6;font-size: 13px !important;">
+                <!-- <p>Buy Entries</p> -->
+                <p>Entry price :<b> ${{item.entryPrice}} </b></p>
+                <p>Average price :<b>${{item.averagePrice}}</b></p>
+                <p>Take profit :<b> ${{item.takeProfit}}</b></p>
+                <p>Portfolio : <b>{{item.portfolio}}%</b></p>
+              </span>
+
+              <!-- </ul> -->
+              <!-- <div class="col-md-4">
+                    <ul>
+                        <li>1.2421</li>
+                        <li>1.2421</li>
+                        <li>1.2421</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+           <span>Vikas</span>
+                </div>
+                <div class="col-md-4">
+                    <ul>
+                        <li>1.2421</li>
+                        <li>1.2421</li>
+                        <li>1.2421</li>
+                    </ul>
+                </div> -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    <div class="tab-pane fade mt-4" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+      <!-- Content for Tab 2 -->
+      <div class="mb-3" *ngFor="let item of closePosition">
+
+        <!-- <span class="date">UTC+4: {{item.createdTime}}</span> -->
+        <div class="card">
+          <div class="card-header">
+            <div class="col-md-12">
+              <span class="sol">
+                {{item.CoinTitle}}
+                <span *ngIf="item.shortlong == '1'" class="svgDiv">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="35" height="15" viewBox="0 0 19 12" fill="none">
+                    <path d="M1 11L6.66667 5L10.4444 9L18 1" stroke="#00A52E" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <path d="M14.2227 1H18.0004V5" stroke="#00A52E" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <span *ngIf="item.shortlong == '0'" class="svgDiv">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="35" height="15" viewBox="0 0 19 12" fill="none">
+                    <path d="M1 1L6.66667 7L10.4444 3L18 11" stroke="#E11818" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <path d="M14.2227 11H18.0004V7" stroke="#E11818" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </span>
+              <span class="value">
+                <span style="font-weight: 800;color: green;font-size: 15px;">PROFIT {{item.percentage}}%</span>
+              </span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div style="display: flex;justify-content: space-between;margin-top: 5px;" class="col">
+
+              <span style="line-height: 0.6;font-size: 13px !important;">
+                <!-- <p>Buy Entries</p> -->
+                <p>Opened date : <b>{{formatDate(item.openDate.replace('T',' '))}}</b> </p>
+                <p>Entry price : <b>$ {{item.closedEntryPrice}}</b> </p>
+                <p>Closed date : <b>{{formatDate(item.closeDate.replace('T',' '))}}</b></p>
+                <p>Exit price : <b> $ {{item.closedExitPrice}}</b></p>
+                <p>Profit : <b> {{item.percentage}}%</b></p>
+
+              </span>
+
+              <!-- </ul> -->
+              <!-- <div class="col-md-4">
+                      <ul>
+                          <li>1.2421</li>
+                          <li>1.2421</li>
+                          <li>1.2421</li>
+                      </ul>
+                  </div>
+                  <div class="col-md-4">
+             <span>Vikas</span>
+                  </div>
+                  <div class="col-md-4">
+                      <ul>
+                          <li>1.2421</li>
+                          <li>1.2421</li>
+                          <li>1.2421</li>
+                      </ul>
+                  </div> -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      
+    </div>
+  </div>
+
+</div>
+<div class="fixed-bottom" style="bottom: 15% !important;left: 80% !important;">
+  <button  class="btn btn-primary btn-lg rounded-circle" (click)="performAction()">
+    <i   class="fa fa-calculator"></i>
+  </button>
+</div>
+<div *ngIf="calCulatorFlag" class="popup-overlay">
+  <div class="popup-container" style="position: absolute;top: 30px;overflow-y: auto;height: 75%;overflow-x: hidden !important;max-width: 95%;">
+    <h2 style="padding: 20px;background-color: #007bff !important;color: white;font-weight: 800;">Profit Calculator</h2>
+    <div class="row mt-2">
+      <span style="font-size: 15px;padding: 10px;font-weight: 800;padding: 20px;">
+
+        <app-compound-interest-calculator></app-compound-interest-calculator>
+
+      </span>
+    </div>
+    <div class="col-md-12 text-center mb-3">
+
+      <button (click)="calCulatorFlag = false" style="background-color: red;" class="close-button">Close</button>
+    </div>
+  </div>
+</div>
+</div>
+<div class="mt-5">
+  <app-footer></app-footer>
+</div>
+
+<!-- main.component.html -->
+<app-preloader *ngIf="loading"></app-preloader>
+<!-- Your main content here -->

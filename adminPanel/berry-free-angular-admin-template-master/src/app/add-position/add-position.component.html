@@ -59,9 +59,9 @@
                         percentage
                     </label>
                     <br>
-                    <input class="input" type="number" formControlName="percentage" placeholder="Enter the percentage" >
-                    <div *ngIf="positionForm.get('percentage').hasError('required')" class="error">Coin Title is required.</div>
-                    <div *ngIf="positionForm.get('percentage').hasError('maxlength')" class="error">Coin Title cannot exceed 5 characters.</div>
+                    <input class="input" type="number" formControlName="percentage" placeholder="8" >
+                    <div *ngIf="positionForm.get('percentage').hasError('required')" class="error">Percentage is required.</div>
+                    <div *ngIf="positionForm.get('percentage').hasError('maxlength')" class="error">Percentage cannot exceed 5 characters.</div>
                   </div>
     
             </div>
@@ -71,7 +71,7 @@
                        Entry Price
                     </label>
                     <br>
-                    <input class="input" type="number" formControlName="entryPrice" placeholder="Enter the Entry Price" >
+                    <input class="input" type="number" formControlName="entryPrice" placeholder="23" >
                     <div *ngIf="positionForm.get('entryPrice').hasError('required')" class="error">Entry Price is required.</div>
                     <div *ngIf="positionForm.get('entryPrice').hasError('maxlength')" class="error">Entry Price cannot exceed 5 characters.</div>
                   </div>
@@ -83,7 +83,7 @@
                         Average Price
                     </label>
                     <br>
-                    <input class="input" type="number" formControlName="averagePrice" placeholder="Enter the Average Price" >
+                    <input class="input" type="number" formControlName="averagePrice" placeholder="6" >
                     <div *ngIf="positionForm.get('averagePrice').hasError('required')" class="error">Average Price is required.</div>
                     <div *ngIf="positionForm.get('averagePrice').hasError('maxlength')" class="error">Average Price cannot exceed 5 characters.</div>
                   </div>
@@ -99,7 +99,7 @@
                    Take Profit
                 </label>
                 <br>
-                <input type="number" class="input" formControlName="takeProfit" placeholder="Enter the Take Profit" >
+                <input type="number" class="input" formControlName="takeProfit" placeholder="12" >
                 <div *ngIf="positionForm.get('takeProfit').hasError('required')" class="error">Take Profit is required.</div>
                 <div *ngIf="positionForm.get('takeProfit').hasError('maxlength')" class="error">Take Profit cannot exceed 5 characters.</div>
               </div>
@@ -110,7 +110,7 @@
                         Portfolio
                     </label>
                     <br>
-                    <input class="input" type="text" formControlName="portfolio" placeholder="Enter the Portfolio" >
+                    <input class="input" type="text" formControlName="portfolio" placeholder="8" >
                     <div *ngIf="positionForm.get('portfolio').hasError('required')" class="error">Portfolio is required.</div>
                     <div *ngIf="positionForm.get('portfolio').hasError('maxlength')" class="error">Portfolio cannot exceed 5 characters.</div>
                   </div>
@@ -125,7 +125,7 @@
                     <!-- <input class="input" type="text" formControlName="coinName33" placeholder="Select the Category" > -->
                     <select style="color: black;" formControlName="shortlong">Select the Category
                       <option [value]="1">Long</option>
-                      <option [value]="2">Short</option>
+                      <option [value]="0">Short</option>
                     </select>
                     <div *ngIf="positionForm.get('shortlong').hasError('required')" class="error">Short/Long is required.</div>
                     <div *ngIf="positionForm.get('shortlong').hasError('maxlength')" class="error">Short/Long cannot exceed 5 characters.</div>
@@ -164,7 +164,7 @@
                 Position Opened Date
             </label>
             <br>
-            <input type="datetime-local" class="input" formControlName="openDate" placeholder="Enter the Coin like BTC/USDT" >
+            <input type="datetime-local" class="input" formControlName="openDate" placeholder="BTC/USDT" >
             <div *ngIf="closedPositionForm.get('openDate').hasError('required')" class="error">Open Date is required.</div>
           </div>
         </div>
@@ -174,7 +174,7 @@
                   Entry Price
                 </label>
                 <br>
-                <input class="input" type="number" formControlName="closedEntryPrice" placeholder="Enter the percentage" >
+                <input class="input" type="number" formControlName="closedEntryPrice" placeholder="6" >
                 <div *ngIf="closedPositionForm.get('closedEntryPrice').hasError('required')" class="error">Closed Entry Price is required.</div>
                 <div *ngIf="closedPositionForm.get('closedEntryPrice').hasError('pattern')" class="error">Invalid Closed Entry Price format. Use up to 2 decimal places.</div>
               </div>
@@ -186,7 +186,7 @@
                   Position Closed Date
                 </label>
                 <br>
-                <input class="input" type="datetime-local" formControlName="closeDate" placeholder="Enter the Entry Price" >
+                <input class="input" type="datetime-local" formControlName="closeDate" placeholder="32" >
                 <div *ngIf="closedPositionForm.get('closeDate').hasError('required')" class="error">Close Date is required.</div>
               </div>
 
@@ -197,7 +197,7 @@
                     Exit Price
                 </label>
                 <br>
-                <input class="input" type="number" formControlName="closedExitPrice" placeholder="Enter the Average Price" >
+                <input class="input" type="number" formControlName="closedExitPrice" placeholder="12" >
                 <div *ngIf="closedPositionForm.get('closedExitPrice').hasError('required')" class="error">Closed Exit Price is required.</div>
                 <div *ngIf="closedPositionForm.get('closedExitPrice').hasError('pattern')" class="error">Invalid Closed Exit Price format. Use up to 2 decimal places..</div>
               </div>
@@ -222,7 +222,7 @@
                   Percentage
               </label>
               <br>
-              <input class="input" type="text" formControlName="closedPercentage" placeholder="Enter the Portfolio" >
+              <input class="input" type="text" formControlName="closedPercentage" placeholder="12" >
               <div *ngIf="closedPositionForm.get('closedPercentage').hasError('required')" class="error">Portfolio is required.</div>
               <div *ngIf="closedPositionForm.get('closedPercentage').hasError('maxlength')" class="error">Portfolio cannot exceed 5 characters.</div>
             </div>

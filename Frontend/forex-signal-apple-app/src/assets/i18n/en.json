@@ -1,0 +1,33 @@
+{
+    "login":"Login",
+    "provenStrategy" : "Proven Strategy",
+    "welcomeback" : "welcome back", 
+    "sign in to access your account." : "sign in to access your account.",
+    "Remember me" : "Remember me",
+    "email" : "email",
+    "password" : "password",
+    "forgotpassword" : "forgot password",
+    "provenstrategies" : "Proven Strategies",
+    "unleash" : "Unleash the Mastery of Battle-Tested Approaches: Seize the Unbeatable Advantage in Market Domination!.",
+    "signin" : "Sign In",
+    "signup" : "Sign Up",
+    "skip" : "Skip > >",
+    "getStarted" : "Get Started",
+    "Createyouraccounttogetstarted" : "Create your account to get started",
+    "Emailisrequired" : "Email is required.",
+    "Invalidemailformat" : "Invalid email format.",
+    "Passwordisrequired" : "Password is required.",
+    "passwordvalidation" : "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.",
+    "iagree" : "I agree to the",
+    "terms" : "Terms and Conditions",
+    "next" : "Next >",
+    "continue" : "Or continue with",
+    "alreadymember" : "Already Member ? ",
+    "LoginNow" : "Login Now"
+
+
+
+
+
+
+ }

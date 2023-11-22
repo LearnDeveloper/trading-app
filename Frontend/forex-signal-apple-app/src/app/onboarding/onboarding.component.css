@@ -1,0 +1,84 @@
+.logo-content {
+  text-align: center;
+  padding: 20px;
+}
+
+.title{
+  color: #000;
+text-align: center;
+font-family: Montserrat;
+font-size: 17px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+letter-spacing: 1.02px;
+}
+
+.subtitle{
+  color: #3B3B3B;
+font-family: Montserrat;
+font-size: 15px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+letter-spacing: 0.9px;
+}
+
+.signin{
+border-radius: 10px;
+background: linear-gradient(90deg, #4461F2 -24.12%, #043179 124.75%);
+box-shadow: 0px 7px 18px 1px rgba(68, 97, 242, 0.15);
+color: white ;
+}
+
+
+.signup{
+border-radius: 10px;
+background: #FBFBFE;
+box-shadow: 0px 7px 18px 1px rgba(68, 97, 242, 0.15);
+color: #043179;
+}
+
+.skpbtn{
+  color: #206EEC;
+text-align: center;
+font-family: Montserrat;
+font-size: 14px;
+font-style: normal;
+font-weight: 700;
+line-height: 77px; /* 550% */
+letter-spacing: 1.26px;
+}
+
+.containerEmpty {
+  position: relative;
+  height: 200px; /* Set the height of the container */
+  overflow: hidden;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%234461F2' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+ }
+ 
+ .carousel-control-next-icon {
+   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%234461F2' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+ }
+
+
+
+/* .carousel-indicators{
+  margin-bottom: -16rem !important;
+} */
+
+.carousel-indicators [data-bs-target]{
+color: #043179 !important;
+border-top : 10px solid #043179 !important;
+}
+
+.carousel-control-next, .carousel-control-prev{
+  bottom: 50% !important;
+}
+
+.carousel-indicators{
+  top: 110% !important;
+}

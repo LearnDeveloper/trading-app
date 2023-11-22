@@ -1,0 +1,7 @@
+{
+  "name": "l-earn-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

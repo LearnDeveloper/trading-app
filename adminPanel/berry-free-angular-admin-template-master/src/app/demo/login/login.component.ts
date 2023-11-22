@@ -57,8 +57,12 @@ export class LoginComponent  {
           this.showError(this.data[0].error);
           return;
         }
-        if(this.data[0].data[0].isAdmin){
+        if(this.data[0].data.isAdmin){
           this.showSuccess('Logged in Successfully')
+          localStorage.setItem('isLoggedIN','1');
+          sessionStorage.setItem('userData',JSON.stringify(this.data[0].data));
+          console.log("userData",this.data[0].data)
+          sessionStorage.setItem('isLoggedIN','1');
           this.router.navigate(['/admin/default'])
         }
         else{

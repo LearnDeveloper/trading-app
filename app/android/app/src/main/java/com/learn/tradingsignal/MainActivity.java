@@ -757,11 +757,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        webView.getSettings().setUserAgentString("Mozilla/5.0 (Linux; <Android Version>; <Build Tag etc.>) AppleWebKit/<WebKit Rev> (KHTML, like Gecko) Chrome/<Chrome Rev> Mobile Safari/<WebKit Rev>");
 
         if (!TextUtils.isEmpty(getString(R.string.cache))) {
-            webView.getSettings().setAppCacheEnabled(true);
+//            webView.getSettings().setAppCacheEnabled(true);
             webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
             webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         } else {
-            webView.getSettings().setAppCacheEnabled(false);
+//            webView.getSettings().setAppCacheEnabled(false);
             webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
             webView.clearCache(true);
         }

@@ -1,0 +1,148 @@
+<main>
+
+<div style="cursor: pointer;" class="dropdown">
+    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <span *ngIf="selectedLanguage == 'en'"><img style="margin-right: 5px;" src="https://l-earn.pro/wp-content/plugins/translatepress-multilingual/assets/images/flags/en_GB.png" >English</span>
+        <span *ngIf="selectedLanguage == 'it'"><img style="margin-right: 5px;" src="https://l-earn.pro/wp-content/plugins/translatepress-multilingual/assets/images/flags/it_IT.png" >Italian</span>
+        
+    </button>
+    <div style="cursor: pointer;" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <span (click)="langChanged('en')" class="dropdown-item"><img style="margin-right: 5px;" src="https://l-earn.pro/wp-content/plugins/translatepress-multilingual/assets/images/flags/en_GB.png" >English</span>
+        <span (click)="langChanged('it')" class="dropdown-item"><img style="margin-right: 5px;" src="https://l-earn.pro/wp-content/plugins/translatepress-multilingual/assets/images/flags/it_IT.png" >Italian</span>
+    </div>
+</div>
+
+
+<!-- <img src="{{ user.photoUrl }}" referrerpolicy="no-referrer">
+<div>
+  <h4>{{ user.name }}</h4>
+  <p>{{ user.email }}</p>
+</div> -->
+
+<!-- <div *ngIf="user" class="card text-center">
+  <h6 class="card-header">
+    Social Login Demo
+  </h6>
+  <div class="card-block"></div>
+  <img class="card-img-top img-responsive photo" src="{{ user.photoUrl }}">
+  <div class="card-block">
+    <h4 class="card-title">{{ user.name }}</h4>
+    <p class="card-text">{{ user.email }}</p>
+  </div>
+  <div class="card-block">
+    <button class="btn btn-danger">Sign out</button>
+  </div>
+</div> -->
+
+<div class="login-container mt-5">
+    <div class="logo">
+      <img src="../../assets/images/Logo.png" alt="Logo">
+    </div>
+    <div class="title" style="padding: 10px;">
+      <h1 class="title">{{ 'login' | translate}}</h1>
+      <p class="sub-title">{{'sign in to access your account.' | translate}}</p>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <!-- <label for="text-input">{{"email" | translate}}</label> -->
+            <div class="input-container">
+              <input
+                type="email"
+                id="text-input"
+                formControlName="username"
+                required
+                style="background-color: #ECECEC;"
+                placeholder="Email Address"
+              >
+              <i
+                class="fa fa-times-circle"
+                *ngIf="username.value"
+                (click)="clearTextInput()"
+              ></i>
+            </div>
+            <!-- <div style="color: red;" *ngIf="loginForm.get('username').hasError('required')">
+              Email is required.
+            </div> -->
+            <div style="color: red;" *ngIf="loginForm.get('username').hasError('email')">
+              Please enter a valid email address.
+            </div>
+          </div>
+          
+      <div class="form-group">
+        <!-- <label for="password">{{'password' | translate}}</label> -->
+        <div class="password-input">
+          <input
+            type="{{ hidePassword ? 'password' : 'text' }}"
+            id="password"
+            formControlName="password"
+            required
+            style="background-color: #ECECEC;"
+            placeholder="Password"
+          >
+          <i
+            class="fa" 
+            style="color: gray !important"
+            [ngClass]="{'fa-eye': hidePassword, 'fa-eye-slash': !hidePassword}"
+            (click)="togglePasswordVisibility()"
+          ></i>
+        </div>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
+          <div *ngIf="password.errors.required">Password is required.</div>
+        </div>
+      </div>
+      
+      <div class="form-group remember-forgot">
+        <label>
+          <input style="width: 8% !important;" type="checkbox" (change)="rememberCheck($event)" formControlName="rememberMe"> {{'Remember me' | translate}}
+        </label>
+        <a href="forgot-password" class="forgot-password-link">{{'forgotpassword' | translate}}?</a>
+      </div>
+      <button class="buttonlogin mt-5 mb-5" type="submit" [disabled]="loginForm.invalid">Sign In ></button>
+    </form>
+    <div class="row">
+        <div class="continueText text-center">
+            <span>Or continue with</span>
+        </div>
+    </div>
+    <!-- <div class="social-icons" style="display: flex;justify-content: center;"> -->
+      <!-- <img src="../../assets/images/group.png" alt="group" > -->
+      <!-- <div id="g_id_onload"
+      data-client_id="814500289946-gmvotckg75l09uls4qdpbdrvv2gfrc4n.apps.googleusercontent.com"
+      data-context="signup"
+      data-ux_mode="popup"
+      data-auto_select="true"
+      data-itp_support="true">
+ </div> -->
+ 
+ <!-- <div class="g_id_signin"
+      data-type="icon"
+      data-shape="square"
+      data-theme="outline"
+      data-text="signin_with"
+      data-size="large">
+      
+ </div> -->
+ <!-- <div (click)="loginWithGoogle()" class="facebook-button">
+  <i class="fab fa-google"></i>
+</div>
+ <div>
+  <div (click)="apple()" class="facebook-button">
+    <i class="fab fa-facebook-f"></i>
+</div> -->
+ <!-- </div> -->
+
+  <!-- </div> -->
+    <div class="row">
+        <div class="continueText text-center">
+            <span class="newMember">New Member ? <span style="cursor: pointer;" (click)="navigate('signup')" class="registerNow">Register Now</span></span>
+        </div>
+    </div>
+  </div>
+  
+      
+</main>
+
+<!-- main.component.html -->
+<app-preloader *ngIf="loading"></app-preloader>
+<!-- Your main content here -->

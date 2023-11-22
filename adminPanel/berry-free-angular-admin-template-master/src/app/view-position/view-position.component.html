@@ -102,9 +102,9 @@
                  
                       
                       <ng-container matColumnDef="Action">
-                        <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Created Time</mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Action</mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                          {{element.createdTime}}
+                          <button (click)="editPopup(element)" class="button">Edit</button>
                         </mat-cell>
                       </ng-container>
         
@@ -199,9 +199,9 @@
                
                     
                     <ng-container matColumnDef="Action">
-                      <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Created Time</mat-header-cell>
+                      <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Action</mat-header-cell>
                       <mat-cell *matCellDef="let element">
-                        {{element.createdTime}}
+                        <button (click)="editPopup(element)" class="button">Edit</button>
                       </mat-cell>
                     </ng-container>
       
@@ -243,46 +243,46 @@
     <div class="popupBody" style="line-height: 2;">
       <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
         <div class="divContainer">
-          <label>Email:</label>
-          <input type="text" formControlName="email">
+          <label>coinTitle:</label>
+          <input type="text" formControlName="coinTitle">
         </div>
         <div class="divContainer">
-          <label>Phone Number:</label>
-          <input type="text" formControlName="phoneNumber">
+          <label>percentage:</label>
+          <input type="text" formControlName="percentage">
         </div>
         <div class="divContainer">
           <label>Full Name:</label>
-          <input type="text" formControlName="fullName">
+          <input type="text" formControlName="averagePrice">
         </div>
         <div class="divContainer">
-          <label>Language:</label>
-          <input type="text" formControlName="language">
+          <label>takeProfit:</label>
+          <input type="text" formControlName="takeProfit">
         </div>
         <div class="divContainer">
-          <label>User ID:</label>
-          <input type="text" formControlName="userId">
+          <label>portfolio:</label>
+          <input type="text" formControlName="portfolio">
         </div>
         <div class="divContainer">
-          <label>Password:</label>
-          <input type="password" formControlName="password">
+          <label>shortlong:</label>
+          <input type="password" formControlName="shortlong">
         </div>
         <div class="divContainer">
-          <label>Active:</label>
-          <select formControlName="active" id="cars" name="cars">
+          <label>status:</label>
+          <select formControlName="status" id="cars" name="cars">
             <option [value]="true">Yes</option>
             <option [value]="false">No</option>
           </select>
         </div>
-        <div class="divContainer">
+        <!-- <div class="divContainer">
           <label>Banned:</label>
           <select formControlName="banned" id="cars" name="cars">
             <option [value]="true">Yes</option>
             <option [value]="false">No</option>
           </select>
-        </div>
+        </div> -->
         <div class="renameBtn mt-4">
           <button style="color:teal !important"  (click)="editpopup = false" class="docFavCancleBtn" >Cancel</button>
-          <button class="docFavSaveBtn" type="submit">Edit</button>
+          <button (click)="edit()" class="docFavSaveBtn" type="submit">Edit</button>
         </div>    
       </form>
  </div>

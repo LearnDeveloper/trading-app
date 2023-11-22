@@ -5,6 +5,13 @@ var nodemailer = require('nodemailer');
 const currentDateAndTime = new Date();
 const OTP = Math.floor(1000 + Math.random() * 9000);
 console.log(OTP);
+const characters = 'LRN0123456789';
+const randomIndex = Math.floor(Math.random() * 67845);
+console.log(randomIndex);
+
+
+// Initialize the code as an empty string
+const referrercode = `LRN${randomIndex}`;
 
 const currentYear = currentDateAndTime.getFullYear();
 const currentMonth = currentDateAndTime.getMonth() + 1; // Months are 0-indexed, so add 1
@@ -141,24 +148,40 @@ async function createUserinDB(id,payload) {
       "firebase_token" : payload.firebase_token,
       "isActive" : payload.isActive,
       "isBanned" : false,
-      "OTP" : OTP
+      "OTP" : OTP,
+      "refferral_code":referrercode,
+      "refferred_code" : payload.refferred_code,
+      "isDeleted" : false,
+      "isSubscribed":true
     }
 
+
     console.log("data",data)
+    let email = data.email;
     
     // Insert user data into the collection
     const result = await collection.insertOne(data);
 
     // Close the MongoDB connection
-    client.close();
+    // client.close();
     const sendMail = await sendOTP(payload);
+    // console.log('sendMail',sendMail);
+    // const client = new MongoClient(MONGODB_URI);
+    // await client.connect();
+
+    const userDetails = await db
+    .collection("LEARN_USERS")
+    .find({email})
+    .toArray();
+
+    console.log(userDetails);
     console.log(sendMail);
     return {
       statusCode: 200,
       'headers': {
         'Access-Control-Allow-Origin': '*'
     },
-      body: JSON.stringify({ message: 'User created successfully', insertedId: result.insertedId }),
+      body: JSON.stringify({ message: 'User created successfully', data: userDetails,responseCode : '1000' }),
     };
     
   } catch (error) {
@@ -171,16 +194,16 @@ async function createUserinDB(id,payload) {
   
 }
 
-async function sendOTP(payload) {
-var transport = nodemailer.createTransport({
-  pool: true,
-  host: "smtp.hostinger.com",
-  port: 465,
-  secure: true, // use TLS
-  auth: {
-    user: "notify@l-earn.pro",
-    pass: "Notify@2023l-earnPro",
-  },
+async function sendOTP(payload): Promise<void> {
+  const transporter = nodemailer.createTransport({
+    service: 'SMTP',
+    host: 'smtp.hostinger.com',
+    port: 465,
+    secure: true, // Set to true if your SMTP server requires a secure connection (e.g., for Gmail, set it to true)
+    auth: {
+        user: 'notify@l-earn.pro',
+        pass: 'Notify@2023l-earnPro',
+    },
 });
 
 console.log('SMTP Configured');
@@ -195,37 +218,55 @@ console.log('SMTP Configured');
   to: payload.email,
 
    // Subject of the message
-  subject: "check", //'Nodemailer is unicode friendly ✔', 
+  subject: "Welcome to L-EARN", //'Nodemailer is unicode friendly ✔', 
 
   // plaintext body
   //  text: "Hello" //'Hello to myself!',
 
   // HTML body
-   html:'<span style="text-align:left;background-color: linear-gradient(220deg, rgba(246,246,246,1) 50%, rgba(140,159,255,1) 100%)"><h1 style="padding:20px;"><b>Welcome to L-EARN</b></h1><br>'+
+   html:'<span style="text-align:left;background-color: linear-gradient(220deg, rgba(246,246,246,1) 50%, rgba(140,159,255,1) 100%)"><h1 style="padding:20px;"><b>Welcome to L-EARN</b></h1>'+
      '<p style="text-align:"left">Dear'+payload.full_name+'</p><br><p>Thank you for signing up for our service. We are excited to have you as a member!</p><br><p>Here are some key details about your account:</p><br><ul><li>Email:'+payload.full_name+'</li><li>Password:'+payload.password+'</li><li>OTP:'+OTP+'</li></ul><br><p>If you have any questions or need assistance, please dont hesitate to contact us.</p><br><p>Best regards,<br>L-earn Team</p></span>'
   };
 
   console.log('Sending Mail');
-  transport.sendMail(message, (error, info) => {
+  // await new Promise<void>((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
+  transporter.sendMail(message,  (error, info) => {
     if (error) {
+      reject(error);
       console.error('Error sending email:', error);
     } else {
+      resolve( )
       console.log('Email sent:', info.response);
+      // let finalData =  info.response;
+      // return finalData;
     }
+});
 });
 }
 
 async function resendOTP(payload) {
-  var transport = nodemailer.createTransport({
-    pool: true,
-    host: "smtp.hostinger.com",
+  // var transport = nodemailer.createTransport({
+  //   pool: true,
+  //   host: "smtps.hostinger.com",
+  //   port: 465,
+  //   secure: true, // use TLS
+  //   auth: {
+  //     user: "notify@l-earn.pro",
+  //     pass: "Notify@2023l-earnPro",
+  //   },
+  // });
+  // var transporter = nodemailer.createTransport('smtps://notify@l-earn.pro:Notify@2023l-earnPro@smtp.hostinger.com');
+  const transporter = nodemailer.createTransport({
+    service: 'SMTP',
+    host: 'smtp.hostinger.com',
     port: 465,
-    secure: true, // use TLS
+    secure: true, // Set to true if your SMTP server requires a secure connection (e.g., for Gmail, set it to true)
     auth: {
-      user: "notify@l-earn.pro",
-      pass: "Notify@2023l-earnPro",
+        user: 'notify@l-earn.pro',
+        pass: 'Notify@2023l-earnPro',
     },
-  });
+});
   
   console.log('SMTP Configured');
   
@@ -250,7 +291,7 @@ async function resendOTP(payload) {
     };
   
     console.log('Sending Mail');
-    transport.sendMail(message, function(error){
+    transporter.sendMail(message, function(error){
     if(error){
     console.log('Error occured');
     console.log(error.message);
@@ -263,6 +304,63 @@ exports.handler = async (event) => {
 
 
   let body = JSON.parse(event.body)
+//   let body = {
+//     "path": "create",
+//     "user_id": "",
+//     "full_name": "VikasGuru",
+//     "Phone_Number": 9731243153,
+//     "email": "vikastheshit@gmail.com",
+//     "password": "System@123",
+//     "refferred_code": "LRN092121",
+//     "device_info": {
+//         "isMobile": true,
+//         "isTablet": false,
+//         "isDesktop": false,
+//         "deviceType": "Mobile",
+//         "OS": "iOS",
+//         "osVersion": "13.2.3",
+//         "screen_resolution": "390 x 844",
+//         "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1",
+//         "IP Address": "49.37.169.82"
+//     },
+//     "created_date": "",
+//     "language": "",
+//     "firebase_token": "",
+//     "isActive": true,
+//     "isBanned": false,
+//     "isAdmin": false
+// }
+
+// const newUser = await resendOTP(body);
+// return newUser;
+// let body = {
+//   "path": "create",
+//   "user_id": "",
+//   "full_name": "Vikas Guru",
+//   "Phone_Number": 9731243153,
+//   "email": "vikastheshit@gmail.com",
+//   "password": "System@123",
+//   "refferred_code": "LRN092121",
+//   "device_info": {
+//       "isMobile": true,
+//       "isTablet": false,
+//       "isDesktop": false,
+//       "deviceType": "Mobile",
+//       "OS": "Android",
+//       "osVersion": "10",
+//       "screen_resolution": "412 x 915",
+//       "userAgent": "Mozilla/5.0 (Linux; Android 10; SM-G981B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Mobile Safari/537.36",
+//       "IP Address": "49.205.248.107"
+//   },
+//   "created_date": "",
+//   "language": "",
+//   "firebase_token": "",
+//   "isActive": true,
+//   "isBanned": false,
+//   "isAdmin": false
+// }
+
+
   console.log("body", body);
   let client;
   if(body.path == "create")

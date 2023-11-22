@@ -1,0 +1,168 @@
+
+<app-navigation
+  class="coded-navbar pc-sidebar"
+  [ngClass]="{
+    'navbar-collapsed': navCollapsed,
+    'mob-open': navCollapsedMob
+  }"
+  (NavCollapsedMob)="navMobClick()"
+></app-navigation>
+
+<app-nav-bar (NavCollapse)="this.navCollapsed = !this.navCollapsed" (NavCollapsedMob)="navMobClick()"></app-nav-bar>
+
+<div class="pc-container">
+  <div class="coded-wrapper">
+    <div class="coded-content">
+      <div class="coded-inner-content">
+        <app-breadcrumb></app-breadcrumb>
+
+        <div class="main-body">
+
+          
+
+          <div *ngIf="progressEng > 1" style="position: absolute;top:45%" class="progress">     
+            <span>English Video</span>           
+            <span class="progress-text mt-4">{{ progressEng }}%</span>
+            <div class="progress-bar" [style.width.%]="progressEng"></div>
+
+          </div>
+          <div *ngIf="progressIta > 1" style="position: absolute;top:50%"  class="progress">    
+            <span>Italian Video</span>           
+            <span class="progress-text mt-4">{{ progressIta }}%</span>
+            <div class="progress-bar" [style.width.%]="progressIta"></div>
+
+          </div>
+          <div *ngIf="loader">
+            <div class="loader">
+            
+            </div>
+            <span class="loaderText">Please wait Video is Uploading......</span>
+          </div>
+          
+
+            <div class="title">
+                <h2>Add Videos</h2>
+            </div>
+          <ng-container *ngIf = "selectedPosition == 'opened'">  
+            <form [formGroup]="videoForm">
+            <div class="row mt-4">
+              <div class="col-md-6">
+                <span style="padding: 10px;font-weight: 800;background-color:#007bff;color: white;">
+                  English
+                </span>
+                  <div class="row" style="padding: 20px;">
+                     <div class="col-md-4">
+                       <div class="form-group">
+                         <label class="formGroup">
+                             Select Video English
+                         </label>
+                         <br>
+                         <input type="file" (change)="handleFileInputEnglish($event)" class="input"  accept="video/mp4,video/webm"  >
+                       </div>
+                     </div>
+                     <div class="col-md-6">
+                         <div class="form-group">
+                             <label class="formGroup">
+                                Title in English
+                             </label>
+                             <br>
+                             <input class="input" type="text" formControlName="titleEng" placeholder="Enter the Title in English" >
+                             <div *ngIf="videoForm.get('titleEng').hasError('required')" class="error">Title is required</div>
+                           </div>
+             
+                     </div>
+                 </div>
+                 <div class="row" style="padding: 20px;">
+                    
+                     <div class="col-md-6">
+                         <div class="form-group">
+                             <label class="formGroup">
+                                 Description in English
+                             </label>
+                             <br>
+                             <textarea style="width: 380px;height: 200px;" class="input" type="number" formControlName="subTitleEng" placeholder="Enter the description" ></textarea>
+                             <div *ngIf="videoForm.get('subTitleEng').hasError('required')" class="error">Description is required.</div>
+                           </div>
+             
+                     </div>
+                 </div>
+                  
+              </div>
+              <div class="col-md-6">
+                <span style="padding: 10px;font-weight: 800;background-color:#007bff;color: white;">
+                  Italian
+                </span>
+               
+                  <div class="row" style="padding: 20px;">
+                     <div class="col-md-4">
+                       <div class="form-group">
+                         <label class="formGroup">
+                             Select Video Italian
+                         </label>
+                         <br>
+                         <input type="file" (change)="handleFileInputItalian($event)" class="input"  accept="video/mp4,video/webm"  >
+                       </div>
+                     </div>
+                     <div class="col-md-6">
+                         <div class="form-group">
+                             <label class="formGroup">
+                                Title in Italian
+                             </label>
+                             <br>
+                             <input class="input" type="text" formControlName="titleIta" placeholder="Enter the Title" >
+                             <div *ngIf="videoForm.get('titleIta').hasError('required')" class="error">Title is required</div>
+                           </div>
+             
+                     </div>
+                 </div>
+                 <div class="row" style="padding: 20px;">
+                    
+                     <div class="col-md-6">
+                         <div class="form-group">
+                             <label class="formGroup">
+                                 Description in Italian
+                             </label>
+                             <br>
+                             <textarea style="width: 380px;height: 200px;" class="input" type="number" formControlName="subTitleIta" placeholder="Enter the description" ></textarea>
+                             <div *ngIf="videoForm.get('subTitleIta').hasError('required')" class="error">Description is required.</div>
+                           </div>
+             
+                     </div>
+                 </div>
+
+         
+                  
+              </div>
+              <div class="row text-center mb-3">
+                <button (click)="uploadBothVideos()"  style="width: 200px;margin-left: 40%;" class="docFavSaveBtn" type="submit">Save Video</button>
+             </div>
+            </div>
+          </form>  
+
+      </ng-container>    
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- popup.component.html -->
+
+<footer class="pc-footer">
+  <div class="footer-wrapper container-fluid">
+    <div class="row">
+      <div class="col my-1">
+        <p class="m-0"> Copyright &copy; <a href="" target="_blank">L-earn Design and Developed by Boom Tech</a> </p>
+      </div>
+      <div class="col-auto my-1">
+        <ul class="list-inline footer-link mb-0">
+          <li class="list-inline-item"><a href="/" target="_blank">Home</a></li>
+          <li class="list-inline-item">
+            <a href="/privacy-policy/" target="_blank">Privacy Policy</a>
+          </li>
+          <li class="list-inline-item"><a href="" target="_blank">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<app-configuration></app-configuration>

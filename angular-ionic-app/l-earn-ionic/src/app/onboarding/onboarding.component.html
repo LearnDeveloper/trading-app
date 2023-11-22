@@ -1,0 +1,76 @@
+<main>
+    <div class="dropdown pb-5">
+        <button style="background-color: #206EEC;color: white;" class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            English
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <span (click)="langChanged('en')" class="dropdown-item">English</span>
+            <span (click)="langChanged('it')" class="dropdown-item">Italian</span>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div id="onboarding-carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#onboarding-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#onboarding-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#onboarding-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
+            <div class="carousel-inner">
+                <div>
+                    <div class="carousel-item active text-center">
+                        <img src="../../assets/images/onboard12.png" class="" id="1" alt="Slide 1">
+                        <div class="row text-center mt-5">
+                            <span class="title mt-5">{{'provenstrategies' | translate}}</span>
+                            <span class="subtitle mt-3">
+                                {{'unleash' | translate}}
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="carousel-item text-center">
+                    <img  src="../../assets/images/onboard2.png" class="" id="2" alt="Slide 2">
+                    <div class="row text-center mt-5">
+                        <span class="title mt-5">{{'provenstrategies' | translate}}</span>
+                        <span class="subtitle mt-3">
+                            {{'unleash' | translate}}                        </span>
+                    </div>
+                </div>
+                <div class="carousel-item text-center">
+                    <img  src="../../assets/images/onboard3.png" class="" id="3" alt="Slide 3">
+                    <div class="row text-center mt-5">
+                        <span class="title mt-5">{{'provenstrategies' | translate}}</span>
+                        <span class="subtitle mt-3">
+                            {{'unleash' | translate}}                        </span>
+                    </div>
+                </div>
+
+                <a class="carousel-control-prev" href="#onboarding-carousel" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#onboarding-carousel" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </a>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="containerEmpty" style="max-height: 8vh;">
+
+    </div>
+    <div class="d-flex mt-4" style="justify-content: space-evenly;">
+        <button (click)="navigate('signin')" class="btn signin">{{'signin'| translate}}</button>
+        <button (click)="navigate('signup')" class="btn signup">{{'signup' | translate}}</button>
+    </div>
+
+    <div class="d-flex mt-4" style="justify-content: space-evenly;">
+        <span (click)="navigate('signup')"  class="skpbtn">{{"skip" | translate}}</span>
+    </div>
+
+</main>`

@@ -1,0 +1,363 @@
+.signup-container {
+    // max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+  .logo img {
+    width: 175px;
+    /* height: 100px; */
+    margin-bottom: 20px;
+  }
+  
+  .title h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #000;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+  }
+  
+  .title p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #252525;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+  
+  .form-group {
+    text-align: left;
+    margin-bottom: 15px;
+  }
+  
+
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+  
+  .checkbox-label input {
+    margin-right: 5px;
+  }
+  
+  button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 100px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button[type="submit"]:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Styling for the terms and conditions link */
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  .password-input {
+    position: relative;
+  }
+  
+  .password-input input {
+    width: 100%;
+    padding: 10px 30px 10px 10px; /* Add right padding for the icon */
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .fa {
+    position: absolute;
+    top: 40%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  .input-container {
+    position: relative;
+  }
+
+  .input-container-email {
+    position: relative;
+  }
+
+  .input-container-tel {
+    position: relative;
+  }
+
+  .input-container-email input {
+    width: 100%;
+    padding: 10px 30px 10px 10px; /* Add right padding for the icon */
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .input-container-tel input {
+    width: 100%;
+    padding: 10px 30px 10px 10px; /* Add right padding for the icon */
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .input-container input {
+    width: 100%;
+    padding: 10px 30px 10px 10px; /* Add right padding for the icon */
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .fa-times-circle {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #ccc;
+  }
+
+  .fa-email {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #ccc;
+  }
+
+  .fa-tel-circle {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #ccc;
+  }
+  
+  
+  .continueText{
+    color: #575757;
+font-family: Montserrat;
+font-size: 10px;
+font-style: normal;
+font-weight: 300;
+line-height: 50px; /* 770% */
+letter-spacing: 0.9px;
+  }
+
+  .registerNow {
+    color: #206EEC;
+font-family: Montserrat;
+font-size: 13px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+  }
+
+  .registerNow {
+    color: #206EEC;
+font-family: Montserrat;
+font-size: 13px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+  }
+
+
+  
+  label{
+    font-size: 15px;
+  }
+
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.facebook-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 7px;
+    background-color: #1877f2; /* Facebook blue */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 5rem;
+}
+
+.facebook-button i {
+    font-size: 24px;
+    /* margin-right: 10px; */
+}
+
+.facebook-button span {
+    font-size: 18px;
+}
+
+.facebook-button:hover {
+    background-color: #1057c7; /* Darker shade of Facebook blue on hover */
+}
+
+.social-icons button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 2rem;
+}
+
+.profileContainer{
+    // width: 110%;
+    // margin-left: -1rem;
+    // margin-top: -1rem;
+}
+
+.profile-circle {
+    margin-top: -5rem;
+    width: 120px;
+    height: 120px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 50%;
+    /* text-align: center; */
+    font-size: 45px;
+    line-height: 120px;
+    display: flex;
+    justify-content: center;
+}
+  
+.premiumMember  {
+    text-align: center;
+    padding: 7px;
+    background: #007bff;
+    width: 50%;
+    border-radius: 50px;
+    color: white;
+    font-family: Montserrat;
+
+}
+
+.name{
+    color: var(--light-gray-11, #000);
+text-align: center;
+
+/* Title_Poppins/Large */
+font-family: Montserrat;
+font-size: 22px;
+font-style: normal;
+font-weight: 600;
+line-height: 28px; /* 127.273% */
+}
+
+.email{
+    color: var(--light-gray-11, #000);
+text-align: center;
+
+/* Title_Poppins/Large */
+font-family: Montserrat;
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: 28px; /* 127.273% */
+}
+
+.text{
+    color: var(--light-gray-11, #000);
+
+/* Body/Medium */
+font-family: Roboto;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+letter-spacing: 0.25px;
+}
+
+.buttonNotify {
+    color: var(--light-primary, #1573FE);
+text-align: right;
+
+/* Body/Medium */
+font-family: Roboto;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+letter-spacing: 0.25px;
+}
+
+.logo img {
+    width: 175px;
+    /* height: 100px; */
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+ .backBtn{
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    font-size: 20px;
+ } 
+
+ .pointer-events-none {
+  pointer-events: none;
+}
+
+.wrapper {
+  cursor: not-allowed;
+}

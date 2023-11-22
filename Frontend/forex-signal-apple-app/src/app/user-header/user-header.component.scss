@@ -1,0 +1,435 @@
+.logo img {
+    width: 175px;
+    /* height: 100px; */
+    margin-bottom: 20px;
+    margin-left: 3rem;
+    text-align: center;
+  }
+  
+  .carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%234461F2' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+   }
+   
+   .carousel-control-next-icon {
+     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%234461F2' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+   }
+  
+  
+  
+  /* .carousel-indicators{
+    margin-bottom: -16rem !important;
+  } */
+  
+  .carousel-indicators [data-bs-target]{
+  color: #007bff !important;
+  border-top : 10px solid #007bff !important;
+  }
+  
+  .carousel-control-next, .carousel-control-prev{
+    bottom: 50% !important;
+  }
+  
+  .carousel-indicators{
+    top: 110% !important;
+  }
+
+  main {
+    background: linear-gradient(220deg, rgba(246,246,246,1) 50%, rgba(140,159,255,1) 100%);
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+.text{
+  color: var(--light, #606060);
+text-align: center;
+font-family: Montserrat;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 16px; /* 133.333% */
+}
+
+.text2{
+  color: #252525;
+font-family: Montserrat;
+font-size: 24px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+.text3{
+  color: var(--general-white, #FFF);
+text-align: center;
+font-feature-settings: 'salt' on;
+font-family: Montserrat;
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: 20px; /* 142.857% */
+}
+
+
+
+
+.card {
+  position: relative;
+  // width: 350px;
+  height: 240px;
+  transition: 0.5s;
+}
+
+.card:hover {
+  height: 450px;
+}
+
+.card .lines {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+.card .lines::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 120px;
+  background: linear-gradient(
+    transparent,
+    #007bff,
+    #007bff,
+    #007bff,
+    transparent
+  );
+  animation: animate 4s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.card .lines::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: black;
+}
+
+.card .imgBx {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 275px;
+  height: 185px;
+  background: #000;
+  transition: 0.5s;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.card:hover .imgBx {
+  width: 325px;
+  height: 250px;
+}
+
+.card .imgBx::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 150px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(
+    transparent,
+    #007bff,
+    #007bff,
+    #007bff,
+    transparent
+  );
+  animation: animate2 6s linear infinite;
+}
+
+@keyframes animate2 {
+  0% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+.card .imgBx::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  // background: #292929;
+}
+
+.card .imgBx img {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  filter: grayscale(1);
+  object-fit: cover;
+  transition: 0.5s ease-in;
+}
+
+.card .imgBx:hover img {
+  filter: none;
+}
+
+.card .content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.card .content .details {
+  padding: 40px;
+  text-align: center;
+  width: 100%;
+  transition: 0.5s;
+  transform: translateY(145px);
+}
+
+.card:hover .content .details {
+  transform: translateY(0px);
+}
+
+.card .content .details h2 {
+  font-size: 1.25em;
+  font-weight: 600;
+  color: #007bff;
+  line-height: 1.2em;
+}
+
+.card .content .details h2 span {
+  font-size: 0.75em;
+  font-weight: 500;
+  color: #fff;
+}
+
+.card .content .details .data {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.card .content .details .data h3 {
+  font-size: 1em;
+  color: #007bff;
+  line-height: 1.2em;
+  font-weight: 600;
+}
+
+.card .content .details .data h3 span {
+  font-size: 0.85em;
+  font-weight: 400;
+  color: #fff;
+}
+
+.card .content .details .actionBtn {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.card .content .details .actionBtn button {
+  padding: 10px 30px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: 500;
+  background: #45f3ff;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.card .content .details .actionBtn button:nth-child(2) {
+  background: #fff;
+}
+
+.card .content .details .actionBtn button:hover {
+  opacity: 1;
+}
+
+@media screen and (max-width: 320px) {
+  .card:hover .imgBx {
+    width: 200px;
+    height: 200px;
+  }
+
+  .card:hover .content .details {
+    transform: translateY(-30px);
+  }
+
+  .card .content .details {
+    padding: 15px;
+    transform: translateY(180px);
+  }
+
+  .card .content .details .actionBtn {
+    gap: 20px;
+    flex-direction: column;
+  }
+}
+
+
+.welcome {
+  color: var(--light, #606060);
+  font-family: Montserrat;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
+}
+
+.journey {
+  color: var(--light, #606060);
+  font-family: Montserrat;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
+}
+
+
+/* Reset some default styles for better consistency */
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the bottom menu */
+.bottom-menu {
+    background-color: #fff;
+    position: fixed;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 5px 7px;
+    text-align: center;
+    z-index: 9999;
+    height: 60px !important;
+    border-radius: 23px;
+    
+}
+
+
+.menu-item {
+    text-decoration: none;
+    color: gray;
+    padding: 5px 35px;
+    font-size: 15px;
+    transition: background-color 0.3s ease;
+    font-family: Montserrat;
+    font-weight: 500;
+}
+
+.menu-item:hover {
+    color: #1877f2;
+}
+
+.fa {
+    font-size: 20px !important;
+}
+
+.active {
+    // background-color: #007bff;
+    color: #007bff;
+    // border-radius: 5px;
+  }
+
+
+  .spanText{
+    color: #0152CE;
+font-family: Montserrat;
+font-size: 9px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+  }
+
+  .container {
+    padding: 20px;
+  }
+  
+  .video-details {
+    padding: 20px;
+  }
+  
+  /* Ensure both sides stack on top of each other on small screens */
+  @media (max-width: 767px) {
+    .row {
+      flex-direction: column;
+    }
+    .col-md-6 {
+      width: 100%;
+    }
+  }
+  
+
+  /* Styles for the overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Ensure the popup is on top */
+}
+
+/* Styles for the popup container */
+.popup-container {
+  background-color: #fff; /* Background color for the popup */
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Box shadow for the popup */
+  max-width: 95%; /* Adjust the maximum width as needed */
+  text-align: center;
+}
+
+/* Styles for the close button */
+.close-button {
+  background-color: #f44336; /* Red color for the close button */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.close-button:hover {
+  background-color: #d32f2f; /* Darker red color on hover */
+}
+
+

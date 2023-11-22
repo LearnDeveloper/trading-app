@@ -1,0 +1,29 @@
+{
+    "login":"Login",
+    "provenStrategy" : "Proven Strategy",
+    "welcomeback" : "welcome back", 
+    "sign in to access your account." : "accedi per accedere al tuo account.",
+    "Remember me" : "Ricordati di me",
+    "email" :  "e-mail",
+    "password" : "parola d'ordine",
+    "forgotpassword" : "Ha dimenticato la password?",
+    "provenstrategies" : "Strategie comprovate",
+    "unleash" : "Scatena la maestria di approcci collaudati: cogli il vantaggio imbattibile nel dominio del mercato!.",
+    "signin" : "registrazione",
+    "signup" : "iscrizione",
+    "skip" : "saltare > >",
+    "getStarted" : "iniziare",
+    "Createyouraccounttogetstarted" : "Crea il tuo account per iniziare",
+    "Emailisrequired" : "L'e-mail è obbligatoria.",
+    "Invalidemailformat" : "Formato email non valido.",
+    "Passwordisrequired." : "E 'richiesta la password.",
+    "passwordvalidation" : "La password deve contenere almeno 8 caratteri e includere almeno una lettera maiuscola, una lettera minuscola, un numero e un carattere speciale.",
+    "iagree" : "sono d'accordo con",
+    "terms" : "Termini e Condizioni",
+    "next" : "Avanti >",
+    "continue" : "Oppure continua con",
+    "alreadymember" : "Già membro?",
+    "LoginNow" : "Accedi ora"
+
+
+}

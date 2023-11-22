@@ -1,0 +1,446 @@
+
+<app-user-header></app-user-header>
+
+
+<!-- <div id="onboarding-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#onboarding-carousel" data-bs-slide-to="0" class="active" aria-current="true"
+      aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#onboarding-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#onboarding-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div>
+      <div class="carousel-item active text-center">
+        <img src="../../assets/images/ads.png" class="" id="1" alt="Slide 1">
+        <div class="row text-center mt-2">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="carousel-item text-center">
+      <img src="../../assets/images/ads.png" class="" id="2" alt="Slide 2">
+      <div class="row text-center mt-2">
+      </div>
+    </div>
+    <div class="carousel-item text-center">
+      <img src="../../assets/images/ads.png" class="" id="3" alt="Slide 3">
+      <div class="row text-center mt-2">
+      </div>
+
+      <a class="carousel-control-prev" href="#onboarding-carousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#onboarding-carousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </a>
+    </div>
+
+  </div>
+</div> -->
+
+<div class="row mt-1" style="padding: 15px;">
+  <span class="text3"
+    style="padding: 8px;text-align: center;background-color:#007bff;font-weight: 800;color: white;border-radius: 40px;font-size: 16px;">Main Feed</span>
+</div>
+
+
+<div style="cursor: pointer;margin-left: 5px;" class="dropdown">
+  <button style="border:1px solid;padding: 2px 8px !important;"  class="dropdownBtn" class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      <span  *ngIf="selectedLanguage == 'en'"><img style="margin-right: 5px;margin-top: -5px;" src="https://l-earn.pro/wp-content/plugins/translatepress-multilingual/assets/images/flags/en_GB.png" >English</span>
+      <span  *ngIf="selectedLanguage == 'it'"><img style="margin-right: 5px;margin-top: -5px;" src="https://l-earn.pro/wp-content/plugins/translatepress-multilingual/assets/images/flags/it_IT.png" >Italian</span>
+      
+  </button>
+  <div style="cursor: pointer;" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <span (click)="langChanged('en')" class="dropdown-item"><img style="margin-right: 5px;" src="https://l-earn.pro/wp-content/plugins/translatepress-multilingual/assets/images/flags/en_GB.png" >English</span>
+      <span (click)="langChanged('it')" class="dropdown-item"><img style="margin-right: 5px;" src="https://l-earn.pro/wp-content/plugins/translatepress-multilingual/assets/images/flags/it_IT.png" >Italian</span>
+  </div>
+</div>
+
+
+<div class="row mt-2" style="overflow-y: auto;overflow-x: hidden !important;">
+  <ng-container *ngIf="selectedLanguage == 'en'">
+    <div *ngFor="let video of englishData; let $index = index" class="col-md-6 mt-3">
+      <!-- <div *ngIf="popupFlag" class="popup-overlay">
+        <div class="popup-container">
+          <div class="row text-center">
+            <span style="padding: 10px;font-size:20px;font-weight: 700;">{{titlePopUp}}</span>
+          </div>
+          <span style="text-align: -webkit-center;">
+            <vg-player style="width: 75%;">
+              <vg-overlay-play></vg-overlay-play>
+              <vg-buffering></vg-buffering>
+              <vg-scrub-bar>
+                <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+              </vg-scrub-bar>
+              <vg-controls style="justify-content: center !important;">
+                <vg-play-pause></vg-play-pause>
+                <vg-playback-button></vg-playback-button>
+                <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+                <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+                <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+                <vg-track-selector></vg-track-selector>
+                <vg-mute></vg-mute>
+                <vg-volume></vg-volume>
+                <vg-fullscreen></vg-fullscreen>
+              </vg-controls>
+              <video [vgMedia]="$any(media)" #media [src]="popupUrl" id="singleVideo" preload="auto" crossorigin>
+                <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
+                <track kind="subtitles" label="English" src="http://static.videogular.com/assets/subs/pale-blue-dot.vtt"
+                  srclang="en" default>
+                <track kind="subtitles" label="Español" src="http://static.videogular.com/assets/subs/pale-blue-dot-es.vtt"
+                  srclang="es">
+              </video>
+            </vg-player>
+          </span>
+    
+          <div class="row mt-2">
+            <span style="font-size: 15px;padding: 10px;font-weight: 800;padding: 20px;">
+              {{subtitlePopup}}
+            </span>
+          </div>
+           <div class="col-md-12 text-center mb-3">
+    
+            <button (click)="popupFlag = false" class="close-button">Close</button>
+           </div>
+        </div>
+      </div> -->
+        <div class="card-list">
+          <article class="card">
+          <figure class="card-image">
+            <video poster="../../assets/images/aurora.png"  controls width="100%" (click)="updatevideoView(video)" >
+              <source  src="{{video.videourl}}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <!-- <vg-player>
+              <vg-overlay-play></vg-overlay-play>
+              <vg-buffering></vg-buffering>
+              <vg-scrub-bar>
+                <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+              </vg-scrub-bar>
+              <vg-controls style="justify-content: center !important;width:80% !important">
+                <vg-play-pause></vg-play-pause>
+                <vg-playback-button></vg-playback-button>
+                <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+                <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+                <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+                <vg-track-selector></vg-track-selector>
+                <vg-mute></vg-mute>
+                <vg-volume></vg-volume>
+                <vg-fullscreen></vg-fullscreen>
+              </vg-controls>
+              <video poster="../../assets/images/aurora.png" [vgMedia]="$any(media)" #media [src]="video.videourl" id="singleVideo" preload="auto">
+                <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
+                <track kind="subtitles" label="English" src="http://static.videogular.com/assets/subs/pale-blue-dot.vtt"
+                  srclang="en" default>
+                <track kind="subtitles" label="Español" src="http://static.videogular.com/assets/subs/pale-blue-dot-es.vtt"
+                  srclang="es">
+              </video>
+            </vg-player> -->
+          </figure>
+          <div class="card-header" style="background-color: transparent;font-size: 19px;font-weight: 800;">
+            <span>{{video.title}}</span>
+        
+          </div>
+          <div class="card-footer" style="background-color: transparent;">
+            <div class="card-meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="EyeOpen">
+                <path d="M21.257 10.962c.474.62.474 1.457 0 2.076C19.764 14.987 16.182 19 12 19c-4.182 0-7.764-4.013-9.257-5.962a1.692 1.692 0 0 1 0-2.076C4.236 9.013 7.818 5 12 5c4.182 0 7.764 4.013 9.257 5.962z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              {{video.totalviews}}
+                        </div>
+            <div class="card-meta card-meta--date">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
+                <rect x="2" y="4" width="20" height="18" rx="4" />
+                <path d="M8 2v4" />
+                <path d="M16 2v4" />
+                <path d="M2 10h20" />
+              </svg>
+              {{ formatDate(video.created_date) }}
+            </div>
+            <button *ngIf="!isVideoLiked(video.id)" class="icon-button" (click)="toggleSelected(video,'add')">
+              
+              <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Heart">
+                <path d="M7 3C4.239 3 2 5.216 2 7.95c0 2.207.875 7.445 9.488 12.74a.985.985 0 0 0 1.024 0C21.125 15.395 22 10.157 22 7.95 22 5.216 19.761 3 17 3s-5 3-5 3-2.239-3-5-3z" />
+              </svg> -->
+              <i class="fa fa-heart" aria-hidden="true"></i>
+
+            </button>
+            <button *ngIf="isVideoLiked(video.id)" class="icon-button-selected" (click)="toggleSelected(video,'remove')">
+              
+              <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Heart">
+                <path d="M7 3C4.239 3 2 5.216 2 7.95c0 2.207.875 7.445 9.488 12.74a.985.985 0 0 0 1.024 0C21.125 15.395 22 10.157 22 7.95 22 5.216 19.761 3 17 3s-5 3-5 3-2.239-3-5-3z" />
+              </svg> -->
+              <i class="fa fa-heart" aria-hidden="true"></i>
+
+            </button>
+          </div>
+        </article>
+        </div>
+
+      
+      <!-- <div class="col">
+        <span (click)="videoView(video.videourl,video.title,video.subtitle)" style="display: flex;align-items: center;">
+          <video  controls width="48%" height="120px" >
+            <source src="{{video.videourl}}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <span style="font-weight: 800;font-size: 13px;margin-left: 1rem;">{{video.title}}
+            <br>
+            <span style="font-size: 10px;color: gray;">11 Views</span>
+            <br>
+            <span style="font-size: 12px;color: gray;">06/10/2023</span>
+          </span>
+        
+        </span>
+      
+      </div> -->
+      <!-- <div class="card mt-5">
+        <div class="lines"></div>
+        <div class="imgBx">
+          <vg-player>
+            <vg-overlay-play></vg-overlay-play>
+            <vg-buffering></vg-buffering>
+            <vg-scrub-bar>
+              <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+              <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+            </vg-scrub-bar>
+            <vg-controls style="justify-content: center !important;">
+              <vg-play-pause></vg-play-pause>
+              <vg-playback-button></vg-playback-button>
+              <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+              <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+              <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+              <vg-track-selector></vg-track-selector>
+              <vg-mute></vg-mute>
+              <vg-volume></vg-volume>
+              <vg-fullscreen></vg-fullscreen>
+            </vg-controls>
+            <video [vgMedia]="$any(media)" #media [src]="video.videourl" id="singleVideo" preload="auto" crossorigin>
+              <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
+              <track kind="subtitles" label="English" src="http://static.videogular.com/assets/subs/pale-blue-dot.vtt"
+                srclang="en" default>
+              <track kind="subtitles" label="Español" src="http://static.videogular.com/assets/subs/pale-blue-dot-es.vtt"
+                srclang="es">
+            </video>
+          </vg-player>
+    
+        </div>
+        <div class="content mt-1">
+          <div class="details">
+            <h2>
+              {{video.title}}<br />
+              <span style="width: 100%;margin-bottom: 1rem;">{{video.subtitle}}</span>
+            </h2>
+    
+            <div class="data">
+              <h3>342<br /><span>Views</span></h3>
+              <h3>120k<br /><span>Like</span></h3>
+              <h3>Alessio<br /><span>Author</span></h3>
+            </div>
+          </div>
+        </div>
+      </div> -->
+  
+  
+      <div *ngIf="calCulatorFlag" class="popup-overlay">
+        <div class="popup-container" style="position: absolute;top: 30px;overflow-y: auto;height: 75%;overflow-x: hidden !important;max-width: 95%;">
+          <h2 style="padding: 20px;background-color: #007bff !important;color: white;font-weight: 800;">Profit Calculator</h2>
+          <div class="row">
+
+            <span style="font-size: 15px;padding: 10px;font-weight: 800;padding: 20px;">
+              <app-compound-interest-calculator></app-compound-interest-calculator>
+  
+            </span>
+          </div>
+           <div class="col-md-12 text-center mb-3">
+    
+            <button (click)="calCulatorFlag = false" style="background-color: red;" class="close-button">Close</button>
+           </div>
+        </div>
+      </div>
+  
+  
+      <div class="fixed-bottom" style="bottom: 15% !important;left: 80% !important;">
+          <button  class="btn btn-primary btn-lg rounded-circle" (click)="performAction()">
+            <i   class="fa fa-calculator"></i>
+          </button>
+      </div>
+      
+    </div>
+    
+  </ng-container>
+  
+  
+  <ng-container *ngIf="selectedLanguage == 'it'">
+    <div *ngFor="let video of italianData; let $index = index" class="col-md-6 mt-3">
+      <div *ngIf="popupFlag" class="popup-overlay">
+        <div class="popup-container">
+          <div class="row text-center">
+            <span style="padding: 10px;font-size:20px;font-weight: 700;">{{titlePopUp}}</span>
+          </div>
+          <!-- <video controls width="80%" >
+            <source src="{{popupUrl}}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video> -->
+          <span style="text-align: -webkit-center;">
+            <vg-player style="width: 75%;">
+              <vg-overlay-play></vg-overlay-play>
+              <vg-buffering></vg-buffering>
+              <vg-scrub-bar>
+                <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+              </vg-scrub-bar>
+              <vg-controls style="justify-content: center !important;">
+                <vg-play-pause></vg-play-pause>
+                <vg-playback-button></vg-playback-button>
+                <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+                <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+                <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+                <vg-track-selector></vg-track-selector>
+                <vg-mute></vg-mute>
+                <vg-volume></vg-volume>
+                <vg-fullscreen></vg-fullscreen>
+              </vg-controls>
+              <video [vgMedia]="$any(media)"  #media [src]="popupUrl" id="singleVideo" preload="auto" crossorigin>
+                <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
+                <track kind="subtitles" label="English" src="http://static.videogular.com/assets/subs/pale-blue-dot.vtt"
+                  srclang="en" default>
+                <track kind="subtitles" label="Español" src="http://static.videogular.com/assets/subs/pale-blue-dot-es.vtt"
+                  srclang="es">
+              </video>
+            </vg-player>
+          </span>
+    
+          <div class="row mt-2">
+            <span style="font-size: 15px;padding: 10px;font-weight: 800;padding: 20px;">
+              {{subtitlePopup}}
+            </span>
+          </div>
+           <div class="col-md-12 text-center mb-3">
+    
+            <button (click)="popupFlag = false" class="close-button">Close</button>
+           </div>
+        </div>
+      </div>
+      <div *ngIf="englishData.length > 0"  class="card-list">
+        <article class="card">
+        <figure class="card-image">
+          <video style="background-color: black;" poster="../../assets/images/aurora.png" controls width="100%" >
+            <source src="{{video.videourl}}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <!-- <vg-player>
+            <vg-overlay-play></vg-overlay-play>
+            <vg-buffering></vg-buffering>
+            <vg-scrub-bar>
+              <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+              <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+            </vg-scrub-bar>
+            <vg-controls style="justify-content: center !important;">
+              <vg-play-pause></vg-play-pause>
+              <vg-playback-button></vg-playback-button>
+              <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+              <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+              <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+              <vg-track-selector></vg-track-selector>
+              <vg-mute></vg-mute>
+              <vg-volume></vg-volume>
+              <vg-fullscreen></vg-fullscreen>
+            </vg-controls>
+            <video  [poster]="'https://dev.l-earn.pro/assets/images/Logo.png'" [vgMedia]="$any(media)" #media [src]="video.videourl" id="singleVideo" preload="auto" crossorigin>
+              <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4" >
+              <track kind="subtitles" label="English" src="http://static.videogular.com/assets/subs/pale-blue-dot.vtt"
+                srclang="en" default>
+            </video>
+          </vg-player> -->
+        </figure>
+        <div class="card-header" style="background-color: transparent;">
+          <a href="#">{{video.title}}</a>
+      
+        </div>
+        <div class="card-footer" style="background-color: transparent;">
+          <div class="card-meta card-meta--views">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="EyeOpen">
+              <path d="M21.257 10.962c.474.62.474 1.457 0 2.076C19.764 14.987 16.182 19 12 19c-4.182 0-7.764-4.013-9.257-5.962a1.692 1.692 0 0 1 0-2.076C4.236 9.013 7.818 5 12 5c4.182 0 7.764 4.013 9.257 5.962z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            2,465
+          </div>
+          <div class="card-meta card-meta--date">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
+              <rect x="2" y="4" width="20" height="18" rx="4" />
+              <path d="M8 2v4" />
+              <path d="M16 2v4" />
+              <path d="M2 10h20" />
+            </svg>
+            {{video.created_date}}
+          </div>
+          <button class="icon-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Heart">
+              <path d="M7 3C4.239 3 2 5.216 2 7.95c0 2.207.875 7.445 9.488 12.74a.985.985 0 0 0 1.024 0C21.125 15.395 22 10.157 22 7.95 22 5.216 19.761 3 17 3s-5 3-5 3-2.239-3-5-3z" />
+            </svg>
+      
+          </button>
+        </div>
+      </article>
+      </div>
+
+          <div *ngIf="calCulatorFlag" class="popup-overlay">
+        <div class="popup-container" style="position: absolute;top: 30px;overflow-y: auto;height: 75%;overflow-x: hidden !important;max-width: 95%;">
+          <h2 style="padding: 20px;background-color: #007bff !important;color: white;font-weight: 800;">Profit Calculator</h2>
+          <div class="row">
+
+            <span style="font-size: 15px;padding: 10px;font-weight: 800;padding: 20px;">
+              <app-compound-interest-calculator></app-compound-interest-calculator>
+  
+            </span>
+          </div>
+           <div class="col-md-12 text-center mb-3">
+    
+            <button (click)="calCulatorFlag = false" style="background-color: red;" class="close-button">Close</button>
+           </div>
+        </div>
+      </div>
+  
+
+
+      <div class="fixed-bottom" style="bottom: 75px !important;left: 75% !important;">
+        <div class="container">
+          <button  class="btn btn-primary btn-lg rounded-circle" (click)="performAction()">
+            <i   class="fa fa-calculator"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>  
+    <div *ngIf="italianData.length == 0"  class="text-center">
+      <span>
+        <img style="max-width: 250px;min-height: 70%;" src="../../assets/images/noData.gif" alt="noData">
+      </span>
+      <br>
+      <span style="font-size: 30px;">
+        No Video Available
+      </span>
+    </div>  
+  </ng-container>
+  
+  
+</div>
+
+
+
+
+<div class="mt-5">
+  <app-footer></app-footer>
+</div>
+
+
+<app-preloader *ngIf="loading"></app-preloader>

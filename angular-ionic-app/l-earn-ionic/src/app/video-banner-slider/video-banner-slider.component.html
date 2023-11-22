@@ -1,0 +1,6 @@
+<div class="owl-carousel owl-theme" [options]="carouselOptions">
+    <div class="item" *ngFor="let video of videos">
+      <video controls [src]="video.src" muted loop autoplay></video>
+    </div>
+  </div>
+  

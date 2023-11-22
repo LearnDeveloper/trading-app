@@ -43,7 +43,7 @@
               </ng-container>
 
               <ng-container matColumnDef="phone number">
-                <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Email</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Phone Number</mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.Phone_Number}}
                 </mat-cell>
               </ng-container>
@@ -70,7 +70,14 @@
 
               <ng-container matColumnDef="device details">
                 <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Device Info</mat-header-cell>
-                <mat-cell *matCellDef="let element"> <button (click)="openPopup(element)" class="button">View</button>
+                <mat-cell *matCellDef="let element"> 
+                  <button (click)="openPopup(element)" class="button">View</button>
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="referral">
+                <mat-header-cell *matHeaderCellDef [style.background-color]="color" style="color: white !important;">Referred User</mat-header-cell>
+                <mat-cell *matCellDef="let element"> <button (click)="referredCode(element)" class="button">View</button>
                 </mat-cell>
               </ng-container>
               <mat-header-row *matHeaderRowDef="displayedColumns;" style="background-color: #707070;color: white;">
@@ -101,9 +108,9 @@
     <!-- <p>This is the content of the popup.</p> -->
     <div class="popupBody" style="line-height: 2;">
       <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-        <div class="divContainer">
+        <div style="pointer-events: none;" class="divContainer">
           <label>Email:</label>
-          <input type="text" formControlName="email">
+          <input  type="text" formControlName="email">
         </div>
         <div class="divContainer">
           <label>Phone Number:</label>
@@ -113,15 +120,17 @@
           <label>Full Name:</label>
           <input type="text" formControlName="fullName">
         </div>
-        <div class="divContainer">
-          <label>Language:</label>
-          <input type="text" formControlName="language">
-        </div>
-        <div class="divContainer">
+        <div style="pointer-events: none;" class="divContainer">
+          <label>Subscribed:</label>
+          <select formControlName="Subscribed" id="cars" name="cars">
+            <option [value]="true">Yes</option>
+            <option [value]="false">No</option>
+          </select>        </div>
+        <div style="pointer-events: none;" class="divContainer">
           <label>User ID:</label>
           <input type="text" formControlName="userId">
         </div>
-        <div class="divContainer">
+        <div style="pointer-events: none;" class="divContainer">
           <label>Password:</label>
           <input type="password" formControlName="password">
         </div>
@@ -141,7 +150,7 @@
         </div>
         <div class="renameBtn mt-4">
           <button style="color:teal !important"  (click)="editpopup = false" class="docFavCancleBtn" >Cancel</button>
-          <button class="docFavSaveBtn" type="submit">Edit</button>
+          <button class="docFavSaveBtn" (click)="editData()"  type="submit">Edit</button>
         </div>    
       </form>
  </div>
@@ -150,7 +159,7 @@
 
 <div *ngIf="popup == true" class="popup-overlay">
   <div class="popup">
-    <h2 style="border-bottom: 1px solid gray;">Edit Information</h2>
+    <h2 style="border-bottom: 1px solid gray;">View Device Information</h2>
     <!-- <p>This is the content of the popup.</p> -->
     <div class="popupBody">
 <div class="row" style="text-align: left;">
@@ -172,6 +181,45 @@
       
     </div>
   </div>
+
+
+  <div *ngIf="referalFlag == true" class="popup-overlay">
+    <div class="popup">
+      <h2 style="border-bottom: 1px solid gray;">Referral Information</h2>
+      <!-- <p>This is the content of the popup.</p> -->
+      <div class="popupBody">
+  <div class="row" style="text-align: left;">
+    <span style="font-weight: 700;text-decoration: underline;" class="mt-2">Total Reffered People : <b>{{referredDetails.length}}</b>
+    </span>
+    <img style="width:75px" *ngFor="let items of referredDetails" src="../../assets/images/human.png" alt="human">
+
+    <!-- <span class="mt-2">Device Type : <b>{{selectedUser.osVersion}}</b></span>
+    <span class="mt-2">screen_resolution : <b>{{selectedUser.screen_resolution}}</b></span>
+    <span class="mt-2">userAgent : <b>{{selectedUser.userAgent}}</b></span> -->
+    <div class="row mt-3">
+      <span style="font-weight: 700;text-decoration: underline;">Referral Details</span>
+    <div *ngFor="let items of referredDetails;index as i" style="border: 1px solid gray;" class="col-md-6 mt-3">
+    <span class="mt-2">Sl No : <b>{{i+1}}</b></span><br>
+    <span class="mt-2">Name : <b>{{items.full_name}}</b></span><br>
+    <span class="mt-2">Phone Number : <b>{{items.Phone_Number}}</b></span><br>
+    <span class="mt-2">email : <b>{{items.email}}</b></span><br>
+    <span class="mt-2">Purchased : <b>{{items.authenticated ? 'Yes':'No'}}</b></span>
+      </div>
+    </div>
+    <!-- <span class="mt-2 text-center">
+      <img style="width: 100px;" *ngIf="selectedUser.isDesktop" src="../../assets/images/desktop.png" alt="desktop">
+      <img style="width: 100px;" *ngIf="selectedUser.isTablet"  src="../../assets/images/tablet.png" alt="desktop">
+      <img style="width: 100px;" *ngIf="selectedUser.isMobile"  src="../../assets/images/mobile.png" alt="desktop">
+    </span> -->
+  </div>
+      </div>
+      <div class="renameBtn">
+        <button style="color:white!important"   (click)="referalFlag = false" class="docFavSaveBtn" >Close</button>
+        <!-- <button class="docFavSaveBtn" >Delete</button> -->
+      </div>    
+        
+      </div>
+    </div>
 <footer class="pc-footer">
   <div class="footer-wrapper container-fluid">
     <div class="row">

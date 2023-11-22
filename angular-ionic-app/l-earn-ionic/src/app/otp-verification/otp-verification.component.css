@@ -1,0 +1,101 @@
+.otp-verification-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+  .logo img {
+    width: 175px;
+    /* height: 100px; */
+    margin-bottom: 20px;
+  }
+  
+  .title h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #000;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+  }
+  
+  .title p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: gray;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+  
+  .form-group {
+    text-align: left;
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .timer {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+
+  
+  label{
+    font-size: 15px;
+  }
+  
+  button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 100px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button[type="submit"]:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Add these styles to your otp-verification.component.css file */
+
+/* Style the OTP input container */
+.otp-inputs {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Style individual OTP input fields */
+.otp-inputs input {
+  width: 15%;
+  padding: 10px;
+  margin-right: 5px; /* Add spacing between input fields */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* Remove margin-right for the last input to avoid extra spacing */
+.otp-inputs input:last-child {
+  margin-right: 0;
+}

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -31,6 +31,19 @@ import { PositionsComponent } from './positions/positions.component';
 import { AddPositionComponent } from './add-position/add-position.component';
 import { DatePipe } from '@angular/common';
 import { ViewPositionComponent } from './view-position/view-position.component';
+import { AddVideosComponent } from './add-videos/add-videos.component';
+import { ViewVideosComponent } from './view-videos/view-videos.component';
+import { ViewVideoComponent } from './view-video/view-video.component';
+import {VgCoreModule} from '@videogular/ngx-videogular/core';
+import {VgControlsModule} from '@videogular/ngx-videogular/controls';
+import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
+import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
+import { AddPaymentComponent } from './add-payment/add-payment.component';
+import { ViewPaymentComponent } from './view-payment/view-payment.component';
+import { EditPaymentComponent } from './edit-payment/edit-payment.component';
+import { AuthGuard } from './auth.guard';
+
+@Injectable({ providedIn: 'root' })
 
 @NgModule({
   declarations: [
@@ -52,6 +65,12 @@ import { ViewPositionComponent } from './view-position/view-position.component';
     PositionsComponent,
     AddPositionComponent,
     ViewPositionComponent,
+    AddVideosComponent,
+    ViewVideosComponent,
+    ViewVideoComponent,
+    AddPaymentComponent,
+    ViewPaymentComponent,
+    EditPaymentComponent,
     
     
   ],
@@ -60,12 +79,19 @@ import { ViewPositionComponent } from './view-position/view-position.component';
     MatTableModule,
     DatePipe,
     ToastrModule.forRoot({
-      timeOut: 10000,
+      timeOut: 2500,
       positionClass: 'toast-bottom-center',
       preventDuplicates: true,
     }), // ToastrModule added],
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
     BrowserAnimationsModule,],
-  providers: [NavigationItem,DatePipe],
+  providers: [
+    AuthGuard,
+    NavigationItem,
+    DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

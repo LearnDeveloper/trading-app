@@ -1,0 +1,27 @@
+
+Citizen Flow 
+
+
+1) Fetching Summary of ammendment 
+
+ a) Working able to fetch data and map
+
+2) Creating a New Reconstituion ID 
+
+  a) Able to create the application number and also fetch the application number 
+  
+       BUT REQUIRE RECONSTITUIONID FOR FURTHER TRANSACTIONS.
+
+3) Selecting Partner and Agent 
+
+   Working able to get the data 
+   BUT REQUIRE RECONSTITUIONID FOR FURTHER TRANSACTIONS.
+   
+   
+5) Adding or editing the parties here 
+
+     The Submitted application number is always retuning the NULL data even in DB its not getting stored 
+
+6) While Updating the Incoming or Outgoing 
+
+     The Firm Person ID getting Null 

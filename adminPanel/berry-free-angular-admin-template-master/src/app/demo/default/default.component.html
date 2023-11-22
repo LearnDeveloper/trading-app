@@ -23,7 +23,7 @@
             </div>
           </div>
         </div>
-        <span class="text-white d-block fs-1 fw-bold my-2">1350 <i class="ti ti-arrow-up-right-circle opacity-50"></i></span>
+        <span class="text-white d-block fs-1 fw-bold my-2">{{userLength}} <i class="ti ti-arrow-up-right-circle opacity-50"></i></span>
         <p class="mb-0 opacity-50">Total User Registered</p>
       </div>
     </div>
@@ -46,7 +46,7 @@
                 <ng-template ngbNavContent>
                   <div class="row">
                     <div class="col-6">
-                      <span class="text-white d-block fs-1 fw-bold my-2">$108<i class="ti ti-arrow-up-right-circle opacity-50"></i></span>
+                      <span style="font-size: 20px !important;" class="text-white d-block fs-1 fw-bold my-2">د.إ {{DecimalPayment}}<i class="ti ti-arrow-up-right-circle opacity-50"></i></span>
                       <p class="mb-0 opacity-50">Total Earning</p>
                     </div>
                     <div class="col-6">
@@ -86,7 +86,7 @@
             <i class="text-white ti ti-credit-card"></i>
           </div>
           <div class="ms-2">
-            <h4 class="text-white mb-1">$203k <i class="ti ti-arrow-up-right-circle opacity-50"></i></h4>
+            <h4 class="text-white mb-1">د.إ {{DecimalPayment}} <i class="ti ti-arrow-up-right-circle opacity-50"></i></h4>
             <p class="mb-0 opacity-50 text-sm">Net Profit</p>
           </div>
         </div>
@@ -101,7 +101,7 @@
             <i class="text-warning ti ti-credit-card"></i>
           </div>
           <div class="ms-2">
-            <h4 class="mb-1">$550K <i class="ti ti-arrow-up-right-circle opacity-50"></i></h4>
+            <h4 class="mb-1">د.إ {{DecimalPayment}} <i class="ti ti-arrow-up-right-circle opacity-50"></i></h4>
             <p class="mb-0 opacity-50 text-sm">Total Revenue</p>
           </div>
         </div>
@@ -115,7 +115,7 @@
         <div class="row mb-3 align-items-center">
           <div class="col">
             <small>Total Growth</small>
-            <h3>$2,324.00</h3>
+            <h3>د.إ {{DecimalPayment}}</h3>
           </div>
           <div class="col-auto">
             <select class="form-select">
@@ -146,7 +146,7 @@
       <div class="card-body">
         <div class="row mb-3 align-items-center">
           <div class="col">
-            <h4>Popular Stocks</h4>
+            <h4>Latest Position</h4>
           </div>
           <div class="col-auto"> </div>
         </div>
@@ -154,11 +154,14 @@
           <div class="px-3 pt-3">
             <div class="row mb-1 align-items-start">
               <div class="col">
-                <h5 class="text-secondary mb-0">Latest Positions</h5>
-                <small class="text-muted"></small>
+                <h4 class="text-secondary mb-0">Total Positions : {{positionsLatestLength}}</h4>
+                <h6 style="color: green !important;" class="text-muted mt-2">Open : {{openPosition}}</h6>
+                <h6 style="color: red !important;" class="text-muted mt-2">Closed : {{closePosition}}</h6>
+
+                
               </div>
               <div class="col-auto">
-                <h4 class="mb-0">$1839.00</h4>
+                <h4 class="mb-0"></h4>
               </div>
             </div>
           </div>
@@ -175,23 +178,25 @@
           </div>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item px-0" *ngFor="let list of ListGroup">
+          <li class="list-group-item px-0" *ngFor="let list of positionsLatest">
             <div class="row align-items-start">
               <div class="col">
-                <h5 class="mb-0">{{ list.name }}</h5>
-                <small class="text-success">{{ list.profit }}</small>
+                <h5 class="mb-0">{{ list.coinTitle }} - {{ list.category }}</h5>
+                <small class="text-success">Percentage : {{list.percentage}}%</small>
               </div>
               <div class="col-auto">
                 <h4 class="mb-0">
-                  {{ list.invest
-                  }}<span class="ms-2 align-top avtar avtar-xxs {{ list.bgColor }}"><i class="{{ list.icon }} {{ list.color }}"></i></span>
+                  <div class="row">
+                    <span style="color: green;" *ngIf="list.shortlong == 1">Long</span>
+                    <span style="color: red;" *ngIf="list.shortlong == 0">Short</span>
+                  </div>
                 </h4>
               </div>
             </div>
           </li>
         </ul>
         <div class="text-center">
-          <a href="javascripr:" class="b-b-primary text-primary">View all <i class="ti ti-chevron-right"></i></a>
+          <a href="/view-position" class="b-b-primary text-primary">View all <i class="ti ti-chevron-right"></i></a>
         </div>
       </div>
     </div>

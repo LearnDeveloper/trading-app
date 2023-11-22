@@ -154,7 +154,7 @@ export class AddPositionComponent {
         "closedEntryPrice": this.closedPositionForm.get('closedEntryPrice').value,
         "closeDate": this.closedPositionForm.get('closeDate').value,
         "closedExitPrice": this.closedPositionForm.get('closedExitPrice').value,
-        "closedstatus": this.closedPositionForm.get('closedstatus').value,
+        "status": this.closedPositionForm.get('closedstatus').value,
         
         "CoinTitle": this.closedPositionForm.get('closedCoinTitle').value,
         "percentage": this.closedPositionForm.get('closedPercentage').value,

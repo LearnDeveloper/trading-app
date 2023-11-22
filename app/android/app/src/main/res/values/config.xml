@@ -7,13 +7,13 @@
     <!--This field is mandatory for app. If you don't use ads you have to put ca-app-pub-3940256099942544~3347511713 for APP_ID-->
 
     <!--If you want to load local site remove value only-->
-    <string name="target_url" translatable="false">https://dev.l-earn.pro/</string>
+    <string name="target_url" translatable="false">https://applicationv2.l-earn.pro/</string>
     <!--If you don't want to load toolbar remove value only-->
     <string name="toolbar" translatable="false"></string>
     <!--If you don't want zoom option remove value only-->
     <string name="zoom" translatable="false"></string>
     <string name="hide_status_bar" translatable="false">true</string>
-    <string name="cache" translatable="false"></string>
+    <string name="cache" translatable="false">true</string>
     <string name="pullToRefresh" translatable="false">true</string>
 
     <!--If you want to enable gps put true-->

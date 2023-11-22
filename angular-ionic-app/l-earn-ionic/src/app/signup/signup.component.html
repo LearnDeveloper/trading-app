@@ -1,0 +1,139 @@
+<div style="cursor: pointer;" class="dropdown">
+  <button style="" class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      <span *ngIf="selectedLanguage == 'en'"><img style="margin-right: 5px;" src="https://l-earn.pro/wp-content/plugins/translatepress-multilingual/assets/images/flags/en_GB.png" >English</span>
+      <span *ngIf="selectedLanguage == 'it'"><img style="margin-right: 5px;" src="https://l-earn.pro/wp-content/plugins/translatepress-multilingual/assets/images/flags/it_IT.png" >Italian</span>
+      
+  </button>
+  <div style="cursor: pointer;" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <span (click)="langChanged('en')" class="dropdown-item"><img style="margin-right: 5px;" src="https://l-earn.pro/wp-content/plugins/translatepress-multilingual/assets/images/flags/en_GB.png" >English</span>
+      <span (click)="langChanged('it')" class="dropdown-item"><img style="margin-right: 5px;" src="https://l-earn.pro/wp-content/plugins/translatepress-multilingual/assets/images/flags/it_IT.png" >Italian</span>
+  </div>
+</div>
+
+<div class="signup-container">
+    <div class="logo">
+      <img src="../../assets/images/Logo.png" alt="Logo">
+    </div>
+    <div class="title">
+      <h1>{{ 'getStarted' | translate }}</h1>
+      <p>{{'Createyouraccounttogetstarted' | translate}}.</p>
+    </div>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <!-- <label for="fullName">Full Name</label> -->
+        <div class="input-container">
+            <input style="background-color: #C4C4C433;" type="text" onkeydown="return /^[A-Za-z,& ]+$/i.test(event.key)" oncopy="return false" onpaste="return false" id="fullName" placeholder="Full Name" formControlName="fullName" required>
+            <i
+            class="fa fa-user-o " style="color: gray !important;"
+          ></i>
+         </div>   
+      </div>
+      <div class="form-group">
+        <!-- <label for="email">Email</label> -->
+        <div class="input-container-email">
+        <input style="background-color: #C4C4C433  !important;" placeholder="Valid Email" type="email" id="email" formControlName="email" required>
+        <i
+        class="fa fa-envelope-o " style="color: gray !important;"
+      ></i>
+
+      </div>
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
+        <div *ngIf="email.errors.required">{{ 'Emailisrequired' | translate }}</div>
+        <div *ngIf="email.errors.email">{{ 'Invalidemailformat' | translate }}</div>
+      </div>
+      </div>
+      <div class="form-group">
+        <!-- <label for="phone">Phone Number</label> -->
+        <div class="input-container-tel">
+        <input style="background-color: #C4C4C433 !important;" type="number"  onKeyPress="if(this.value.length==12) return false;" id="phone" placeholder="Valid Phone Number" formControlName="phone" required>
+        <i
+        class="fa fa-mobile " style="color: gray !important;font-size: 25px;"
+      ></i>
+      </div>
+      </div>
+      <!-- <div class="form-group">
+        <label for="password">Password</label>
+        <input style="background-color: #ECECEC;" type="password" id="password" formControlName="password" required>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
+          <div *ngIf="password.errors.required">Password is required.</div>
+          <div *ngIf="password.errors.pattern">
+            Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.
+          </div>
+        </div>
+      </div> -->
+      <div class="form-group">
+        <!-- <label for="password">Password</label> -->
+        <div class="password-input">
+          <input
+            type="{{ hidePassword ? 'password' : 'text' }}"
+            id="password"
+            formControlName="password"
+            required
+            style="background-color: #C4C4C433"
+            placeholder="Password"
+          >
+          <i
+            style="color: gray !important;"
+            class="fa" 
+            [ngClass]="{'fa-eye ': hidePassword, 'fa-eye-slash ': !hidePassword}"
+            (click)="togglePasswordVisibility()"
+          ></i>
+        </div>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
+          <div *ngIf="password.errors.required">{{ 'Passwordisrequired' | translate }}</div>
+          <div *ngIf="password.errors.pattern">
+            {{ 'passwordvalidation' | translate }}          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-container-tel">
+        <input style="background-color: #C4C4C433 !important;" type="text" id="Referral" placeholder="Referral Code" formControlName="Referral">
+        <i
+        class="fa fa-users" style="color: gray !important;font-size: 15px;"
+      ></i>
+      </div>
+      </div>
+      <div class="form-group">
+        <label>
+          <input type="checkbox" formControlName="termsAndConditions"> {{ 'iagree' | translate }} <a href="">{{ 'terms' | translate }}</a>
+        </label>
+      </div>
+      <button type="submit" [disabled]="signupForm.invalid">{{ 'next' | translate }}</button>
+    </form>
+    <div class="row mt-3">
+        <div class="continueText text-center">
+            <span>{{ 'continue' | translate }}</span>
+        </div>
+    </div>
+    <!-- <div class="social-icons" style="display: flex;justify-content: center;">
+      <div id="g_id_onload"
+      data-client_id="814500289946-gmvotckg75l09uls4qdpbdrvv2gfrc4n.apps.googleusercontent.com"
+      data-context="signup"
+      data-ux_mode="popup"
+      data-auto_select="true"
+      data-itp_support="true">
+ </div>
+ 
+ <div class="g_id_signin"
+      data-type="icon"
+      data-shape="square"
+      data-theme="outline"
+      data-text="signin_with"
+      data-size="large">
+ </div>
+ <div>
+  <div (click)="signInWithFacebook()" class="facebook-button">
+    <i class="fab fa-facebook-f"></i>
+</div>
+ </div>
+  </div> -->
+    <div class="row">
+        <div class="continueText text-center">
+            <span class="newMember">Already Member ? <span style="cursor: pointer;" (click)="navigate('signin')" class="registerNow">Login Now</span></span>
+        </div>
+    </div>
+  </div>
+  
+
+  <app-preloader *ngIf="loading"></app-preloader>

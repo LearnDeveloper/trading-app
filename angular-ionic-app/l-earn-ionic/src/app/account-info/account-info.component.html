@@ -1,0 +1,362 @@
+<div class="profileContainer">
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="" height="230" viewBox="0 0 474 230" fill="none">
+        <path d="M0 -102H474V190.974C474 190.974 330.244 230.154 235.785 230C142.26 229.846 0 190.974 0 190.974V-102Z"
+            fill="#5999FF" fill-opacity="0.1" />
+    </svg> -->
+    <div class="backBtn">
+        <span style="font-weight: 100 !important;" routerLink="/user-dashboard">< Back</span>
+    </div>
+    <div class="logoutBtn">
+        <i style="color: red;font-size: 20px;" class="fa fa-sign-out" aria-hidden="true"></i>
+        <span style="font-size: 20px;" (click)="logout()" >Logout</span>
+    </div>
+</div>
+<div style="text-align:-webkit-center;">
+    <div class="profile-circle">
+        {{nickName}}
+    </div>
+    <div class="premiumMember mt-2">
+        <span>Premium Member</span>
+    </div>
+    <div class="name mt-3">
+        <span>{{userData.full_name}}</span>
+    </div>
+    <div class="email mt-1">
+        <span>{{userData.email}}</span>
+    </div>
+</div>
+
+<div>
+    <div class="card mt-3">
+        <div class="card-body">
+            <div style="display: flex;justify-content: space-between;" class="col">
+
+                <span>
+                    <p class="d-flex" style="align-items: center;">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                                <path d="M2.90063 3.993C2.90246 3.73038 3.00754 3.47902 3.19315 3.29322C3.37876 3.10742 3.63002 3.00209 3.89263 3H21.9086C22.4566 3 22.9006 3.445 22.9006 3.993V20.007C22.8988 20.2696 22.7937 20.521 22.6081 20.7068C22.4225 20.8926 22.1713 20.9979 21.9086 21H3.89263C3.62945 20.9997 3.37713 20.895 3.19112 20.7088C3.00512 20.5226 2.90063 20.2702 2.90063 20.007V3.993ZM4.90063 5V19H20.9006V5H4.90063ZM6.90063 7H12.9006V13H6.90063V7ZM8.90063 9V11H10.9006V9H8.90063ZM6.90063 15H18.9006V17H6.90063V15ZM14.9006 7H18.9006V9H14.9006V7ZM14.9006 11H18.9006V13H14.9006V11Z" fill="black"/>
+                              </svg>
+                        </span>
+                        <span routerLink="/edit-profile" style="margin-left: 10px;">
+                            Edit Profile Information
+                        </span>
+                    </p>
+                    <p (click)="requestNotificationPermission()" class="d-flex" style="align-items: center;">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" color="#1573FE" viewBox="0 0 25 24" fill="none">
+                                <path d="M20.9006 17H22.9006V19H2.90063V17H4.90063V10C4.90063 7.87827 5.74349 5.84344 7.24378 4.34315C8.74407 2.84285 10.7789 2 12.9006 2C15.0224 2 17.0572 2.84285 18.5575 4.34315C20.0578 5.84344 20.9006 7.87827 20.9006 10V17ZM18.9006 17V10C18.9006 8.4087 18.2685 6.88258 17.1433 5.75736C16.0181 4.63214 14.4919 4 12.9006 4C11.3093 4 9.78321 4.63214 8.65799 5.75736C7.53278 6.88258 6.90063 8.4087 6.90063 10V17H18.9006ZM9.90063 21H15.9006V23H9.90063V21Z" fill="black"/>
+                              </svg>
+                        </span>
+                        <span style="margin-left: 10px;">
+                            Notifications
+                        </span>
+                        <span *ngIf="notificationFlag == 'true'" class="buttonNotify" style="position: absolute;right: 10px;">
+                            Enabled
+                        </span>
+                        <span *ngIf="notificationFlag == 'false'" class="buttonNotify" style="position: absolute;right: 10px;color: red;">
+                            Disabled
+                        </span>
+                    </p>
+                    <p class="d-flex" style="align-items: center;">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M2 3.993C2.00183 3.73038 2.1069 3.47902 2.29251 3.29322C2.47813 3.10742 2.72938 3.00209 2.992 3H21.008C21.556 3 22 3.445 22 3.993V20.007C21.9982 20.2696 21.8931 20.521 21.7075 20.7068C21.5219 20.8926 21.2706 20.9979 21.008 21H2.992C2.72881 20.9997 2.4765 20.895 2.29049 20.7088C2.10448 20.5226 2 20.2702 2 20.007V3.993ZM4 5V19H20V5H4ZM6 7H12V13H6V7ZM8 9V11H10V9H8ZM6 15H18V17H6V15ZM14 7H18V9H14V7ZM14 11H18V13H14V11Z" fill="black"/>
+                              </svg>
+                        </span>
+                        <span (click)="subsribed()" style="margin-left: 10px;">
+                            Subscriptions
+                        </span>
+                        <span (click)="subsribed()" class="buttonNotify" style="position: absolute;right: 10px;">
+                            <span  (click)="subsribed()" *ngIf="userData.isSubscribed" style="color: green;">Purchased</span>
+                            <span  (click)="Unsubsribed()"  *ngIf="!userData.isSubscribed"style="color: red;">Not Purchased</span>
+                        </span>
+                    </p>
+                    <p class="d-flex" style="align-items: center;">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M18.5 10L22.9 21H20.745L19.544 18H15.454L14.255 21H12.101L16.5 10H18.5ZM10 2V4H16V6H14.032C13.2606 8.32208 12.0295 10.465 10.412 12.301C11.1333 12.9446 11.9157 13.5163 12.748 14.008L11.997 15.886C10.9225 15.2766 9.9176 14.552 9 13.725C7.21358 15.3417 5.09804 16.5522 2.799 17.273L2.263 15.344C4.23284 14.7159 6.04802 13.6793 7.59 12.302C6.44869 11.0099 5.49806 9.56127 4.767 8H7.007C7.56435 9.02886 8.23267 9.9936 9 10.877C10.2501 9.4361 11.2353 7.7853 11.91 6.001L2 6V4H8V2H10ZM17.5 12.885L16.253 16H18.745L17.5 12.885Z" fill="black"/>
+                              </svg>
+                        </span>
+                        <span style="margin-left: 10px;">
+                            Language
+                        </span>
+                        <span style="position: absolute;right: 0;">
+                            <div style="cursor: pointer;" class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span *ngIf="selectedLanguage == 'en'"><img style="margin-right: 5px;margin-bottom: 3px;" src="https://l-earn.pro/wp-content/plugins/translatepress-multilingual/assets/images/flags/en_GB.png" >English</span>
+                                    <span *ngIf="selectedLanguage == 'it'"><img style="margin-right: 5px;margin-bottom: 3px;" src="https://l-earn.pro/wp-content/plugins/translatepress-multilingual/assets/images/flags/it_IT.png" >Italian</span>
+                                    
+                                </button>
+                                <div style="cursor: pointer;" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <span (click)="langChanged('en')" class="dropdown-item"><img style="margin-right: 5px;" src="https://l-earn.pro/wp-content/plugins/translatepress-multilingual/assets/images/flags/en_GB.png" >English</span>
+                                    <span (click)="langChanged('it')" class="dropdown-item"><img style="margin-right: 5px;" src="https://l-earn.pro/wp-content/plugins/translatepress-multilingual/assets/images/flags/it_IT.png" >Italian</span>
+                                </div>
+                            </div>
+                        </span>
+
+                    <!-- </p> -->
+                </span>
+            </div>
+        </div>
+
+    </div>
+    <div class="card mt-3">
+        <div class="card-body">
+            <div style="display: flex;justify-content: space-between;" class="col">
+
+                <span class="text">
+                    <p class="d-flex" style="align-items: center;">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
+                                fill="none">
+                                <path
+                                    d="M19.9006 7H24.9006V9H19.9006V7ZM17.9006 12H24.9006V14H17.9006V12ZM20.9006 17H24.9006V19H20.9006V17ZM2.90063 22C2.90063 19.8783 3.74349 17.8434 5.24378 16.3431C6.74407 14.8429 8.7789 14 10.9006 14C13.0224 14 15.0572 14.8429 16.5575 16.3431C18.0578 17.8434 18.9006 19.8783 18.9006 22H16.9006C16.9006 20.4087 16.2685 18.8826 15.1433 17.7574C14.0181 16.6321 12.4919 16 10.9006 16C9.30934 16 7.78321 16.6321 6.65799 17.7574C5.53278 18.8826 4.90063 20.4087 4.90063 22H2.90063ZM10.9006 13C7.58563 13 4.90063 10.315 4.90063 7C4.90063 3.685 7.58563 1 10.9006 1C14.2156 1 16.9006 3.685 16.9006 7C16.9006 10.315 14.2156 13 10.9006 13ZM10.9006 11C13.1106 11 14.9006 9.21 14.9006 7C14.9006 4.79 13.1106 3 10.9006 3C8.69063 3 6.90063 4.79 6.90063 7C6.90063 9.21 8.69063 11 10.9006 11Z"
+                                    fill="black" />
+                            </svg>
+                        </span>
+                        <span (click)="copyLink()" style="margin-left: 10px;">
+                            Referral Code :
+                        </span>
+                        <span (click)="copyLink()" ngxClipboard [cbContent]="linkToCopy" class="buttonNotify" style="position: absolute;right: 10px;">
+                            {{userData?.refferral_code}}
+                        </span>
+                        
+                    </p>
+                    <p class="d-flex mt-2" style="align-items: center;">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
+                                fill="none">
+                                <path
+                                    d="M19.9006 7H24.9006V9H19.9006V7ZM17.9006 12H24.9006V14H17.9006V12ZM20.9006 17H24.9006V19H20.9006V17ZM2.90063 22C2.90063 19.8783 3.74349 17.8434 5.24378 16.3431C6.74407 14.8429 8.7789 14 10.9006 14C13.0224 14 15.0572 14.8429 16.5575 16.3431C18.0578 17.8434 18.9006 19.8783 18.9006 22H16.9006C16.9006 20.4087 16.2685 18.8826 15.1433 17.7574C14.0181 16.6321 12.4919 16 10.9006 16C9.30934 16 7.78321 16.6321 6.65799 17.7574C5.53278 18.8826 4.90063 20.4087 4.90063 22H2.90063ZM10.9006 13C7.58563 13 4.90063 10.315 4.90063 7C4.90063 3.685 7.58563 1 10.9006 1C14.2156 1 16.9006 3.685 16.9006 7C16.9006 10.315 14.2156 13 10.9006 13ZM10.9006 11C13.1106 11 14.9006 9.21 14.9006 7C14.9006 4.79 13.1106 3 10.9006 3C8.69063 3 6.90063 4.79 6.90063 7C6.90063 9.21 8.69063 11 10.9006 11Z"
+                                    fill="black" />
+                            </svg>
+                        </span>
+                        <span (click)="referal()" style="margin-left: 10px;">
+                            Referred People :
+                        </span>
+                        <span (click)="referal()" class="buttonNotify" style="position: absolute;right: 10px;">
+                            0
+                        </span>
+                    </p>
+                    <!-- <p class="d-flex" style="align-items: center;">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                                <path d="M11.9006 2C15.9686 2 19.3266 5.036 19.8346 8.965L22.0846 12.504C22.2326 12.737 22.2026 13.084 21.8596 13.232L19.9006 14.07V17C19.9006 18.105 19.0056 19 17.9006 19H15.9016L15.9006 22H6.90063V18.306C6.90063 17.126 6.46463 16.009 5.65663 15.001C4.55763 13.631 3.90063 11.892 3.90063 10C3.90063 5.582 7.48263 2 11.9006 2ZM11.9006 4C8.58663 4 5.90063 6.686 5.90063 10C5.90063 11.385 6.36863 12.693 7.21663 13.75C8.31063 15.114 8.90063 16.667 8.90063 18.306V20H13.9006L13.9026 17H17.9006V12.752L19.4506 12.088L17.9076 9.663L17.8506 9.221C17.4666 6.251 14.9246 4 11.9006 4ZM11.3706 7.763L11.9006 8.293L12.4306 7.763C13.1146 7.079 14.2226 7.079 14.9056 7.763C15.5896 8.446 15.5896 9.554 14.9056 10.237L11.9006 13.243L8.89563 10.237C8.21163 9.554 8.21163 8.446 8.89563 7.763C9.57863 7.079 10.6866 7.079 11.3706 7.763Z" fill="black"/>
+                              </svg>
+                        </span>
+                        <span style="margin-left: 10px;">
+                            Theme
+                        </span>
+                        <span class="buttonNotify" style="position: absolute;right: 10px;">
+                            Dark
+                            <input
+                            type="checkbox"
+                            [checked]="darkMode$ | async"
+                            (change)="onToggle()"
+                          />           
+                        </span>
+                    </p> -->
+                    <!-- <p>Contact Us : </p>
+                   <p>Privacy Policy : </p> -->
+                </span>
+            </div>
+        </div>
+
+    </div>
+    <div class="card mt-3">
+        <div class="card-body">
+            <div style="display: flex;justify-content: space-between;" class="col">
+
+                <span class="text">
+
+                    <p (click)="navigateTo2()" class="d-flex" style="align-items: center;">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                                <path d="M21.9006 3C22.4526 3 22.9006 3.448 22.9006 4V18C22.9006 18.552 22.4526 19 21.9006 19H7.35563L2.90063 22.5V4C2.90063 3.448 3.34863 3 3.90063 3H21.9006ZM20.9006 5H4.90063V18.385L6.66363 17H20.9006V5ZM11.4156 7.412L11.8626 8.1C10.1946 9.003 10.2236 10.452 10.2236 10.764C10.3786 10.744 10.5416 10.74 10.7036 10.755C11.6056 10.839 12.3166 11.58 12.3166 12.5C12.3166 13.466 11.5326 14.25 10.5666 14.25C10.0296 14.25 9.51663 14.005 9.19263 13.66C8.67763 13.114 8.40063 12.5 8.40063 11.505C8.40063 9.755 9.62864 8.187 11.4156 7.412ZM16.4156 7.412L16.8626 8.1C15.1946 9.003 15.2236 10.452 15.2236 10.764C15.3786 10.744 15.5416 10.74 15.7036 10.755C16.6056 10.839 17.3166 11.58 17.3166 12.5C17.3166 13.466 16.5326 14.25 15.5666 14.25C15.0296 14.25 14.5166 14.005 14.1926 13.66C13.6776 13.114 13.4006 12.5 13.4006 11.505C13.4006 9.755 14.6286 8.187 16.4156 7.412Z" fill="black"/>
+                              </svg>
+                        </span>
+                        <span style="margin-left: 10px;">
+                            Contact Us
+
+                        </span>
+                    </p>
+
+                    <p (click)="navigateToTerms()" class="d-flex" style="align-items: center;">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
+                                fill="none">
+                                <path
+                                    d="M19.9006 7H24.9006V9H19.9006V7ZM17.9006 12H24.9006V14H17.9006V12ZM20.9006 17H24.9006V19H20.9006V17ZM2.90063 22C2.90063 19.8783 3.74349 17.8434 5.24378 16.3431C6.74407 14.8429 8.7789 14 10.9006 14C13.0224 14 15.0572 14.8429 16.5575 16.3431C18.0578 17.8434 18.9006 19.8783 18.9006 22H16.9006C16.9006 20.4087 16.2685 18.8826 15.1433 17.7574C14.0181 16.6321 12.4919 16 10.9006 16C9.30934 16 7.78321 16.6321 6.65799 17.7574C5.53278 18.8826 4.90063 20.4087 4.90063 22H2.90063ZM10.9006 13C7.58563 13 4.90063 10.315 4.90063 7C4.90063 3.685 7.58563 1 10.9006 1C14.2156 1 16.9006 3.685 16.9006 7C16.9006 10.315 14.2156 13 10.9006 13ZM10.9006 11C13.1106 11 14.9006 9.21 14.9006 7C14.9006 4.79 13.1106 3 10.9006 3C8.69063 3 6.90063 4.79 6.90063 7C6.90063 9.21 8.69063 11 10.9006 11Z"
+                                    fill="black" />
+                            </svg>
+                        </span>
+                        <span style="margin-left: 10px;">
+                            Terms & Condition
+                        </span>
+                    </p>
+                    
+                        <p (click)="navigateTo()" class="d-flex" style="align-items: center;">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                                    <path d="M6.90063 8V7C6.90063 5.4087 7.53278 3.88258 8.65799 2.75736C9.78321 1.63214 11.3093 1 12.9006 1C14.4919 1 16.0181 1.63214 17.1433 2.75736C18.2685 3.88258 18.9006 5.4087 18.9006 7V8H20.9006C21.1659 8 21.4202 8.10536 21.6077 8.29289C21.7953 8.48043 21.9006 8.73478 21.9006 9V21C21.9006 21.2652 21.7953 21.5196 21.6077 21.7071C21.4202 21.8946 21.1659 22 20.9006 22H4.90063C4.63542 22 4.38106 21.8946 4.19353 21.7071C4.00599 21.5196 3.90063 21.2652 3.90063 21V9C3.90063 8.73478 4.00599 8.48043 4.19353 8.29289C4.38106 8.10536 4.63542 8 4.90063 8H6.90063ZM19.9006 10H5.90063V20H19.9006V10ZM11.9006 15.732C11.5194 15.5119 11.2214 15.1721 11.0529 14.7653C10.8844 14.3586 10.8548 13.9076 10.9688 13.4823C11.0827 13.057 11.3338 12.6813 11.6831 12.4132C12.0324 12.1452 12.4604 11.9999 12.9006 11.9999C13.3409 11.9999 13.7689 12.1452 14.1182 12.4132C14.4674 12.6813 14.7185 13.057 14.8325 13.4823C14.9464 13.9076 14.9169 14.3586 14.7484 14.7653C14.5799 15.1721 14.2819 15.5119 13.9006 15.732V18H11.9006V15.732ZM8.90063 8H16.9006V7C16.9006 5.93913 16.4792 4.92172 15.7291 4.17157C14.9789 3.42143 13.9615 3 12.9006 3C11.8398 3 10.8224 3.42143 10.0722 4.17157C9.32206 4.92172 8.90063 5.93913 8.90063 7V8Z" fill="black"/>
+                                  </svg>
+                            </span>
+                            <span style="margin-left: 10px;">
+                                Privacy Policy
+    
+                            </span>
+                        </p>
+
+                        <p (click)="deleteAccount()" class="d-flex" style="align-items: center;">
+                            <span>
+                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                                    <path d="M6.90063 8V7C6.90063 5.4087 7.53278 3.88258 8.65799 2.75736C9.78321 1.63214 11.3093 1 12.9006 1C14.4919 1 16.0181 1.63214 17.1433 2.75736C18.2685 3.88258 18.9006 5.4087 18.9006 7V8H20.9006C21.1659 8 21.4202 8.10536 21.6077 8.29289C21.7953 8.48043 21.9006 8.73478 21.9006 9V21C21.9006 21.2652 21.7953 21.5196 21.6077 21.7071C21.4202 21.8946 21.1659 22 20.9006 22H4.90063C4.63542 22 4.38106 21.8946 4.19353 21.7071C4.00599 21.5196 3.90063 21.2652 3.90063 21V9C3.90063 8.73478 4.00599 8.48043 4.19353 8.29289C4.38106 8.10536 4.63542 8 4.90063 8H6.90063ZM19.9006 10H5.90063V20H19.9006V10ZM11.9006 15.732C11.5194 15.5119 11.2214 15.1721 11.0529 14.7653C10.8844 14.3586 10.8548 13.9076 10.9688 13.4823C11.0827 13.057 11.3338 12.6813 11.6831 12.4132C12.0324 12.1452 12.4604 11.9999 12.9006 11.9999C13.3409 11.9999 13.7689 12.1452 14.1182 12.4132C14.4674 12.6813 14.7185 13.057 14.8325 13.4823C14.9464 13.9076 14.9169 14.3586 14.7484 14.7653C14.5799 15.1721 14.2819 15.5119 13.9006 15.732V18H11.9006V15.732ZM8.90063 8H16.9006V7C16.9006 5.93913 16.4792 4.92172 15.7291 4.17157C14.9789 3.42143 13.9615 3 12.9006 3C11.8398 3 10.8224 3.42143 10.0722 4.17157C9.32206 4.92172 8.90063 5.93913 8.90063 7V8Z" fill="black"/>
+                                  </svg> -->
+                                  <i style="font-size: 25px;" class="fa fa-user-times"></i>
+                            </span>
+                            <span style="margin-left: 10px;">
+                                Delete Account
+                            </span>
+                        </p>
+                    
+                    
+
+                    <!-- <p>Contact Us : </p>
+                   <p>Privacy Policy : </p> -->
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<div *ngIf="showShare" class="popup-overlay">
+    <div class="popup-container" style="position: absolute;overflow-y: auto;overflow-x: hidden !important;max-width: 95%;">
+      <h2 style="padding: 20px;background-color: #007bff !important;color: white;font-weight: 800;">Refer your Friends</h2>
+      <div class="row">
+
+        <span style="font-size: 15px;font-weight: 800;">
+         <div class="row">
+            <img class="img-fluid" src="../../assets/images/refer.gif" alt="refer">
+         </div>
+         <span class="mt-3" style="padding: 10px;">
+            <input (click)="copyLink()" style="width:90%;border:1px solid #007bff;margin-top: 2rem;height: 40px;border-radius: 25px;" type="text" disabled [value]="linkToCopy">
+         </span>
+         <span >
+            <div class="mn-social-bottom-c" align="center" style="margin-top: 6rem;">
+                <p>Refer and Earn:</p>
+                <a (click)="shareOnFacebook()" class="mn-social-bottom"><i class="fa fa-facebook"></i></a>
+                <a (click)="shareOnTwitter()" class="mn-social-bottom"><i class="fa fa-twitter"></i></a>
+                <a (click)="shareOnLinkedIn()" class="mn-social-bottom"><i class="fa fa-linkedin"></i></a>
+                <a (click)="shareOnWhatsApp()" class="mn-social-bottom"><i class="fa fa-whatsapp"></i></a>
+             </div>
+         </span>
+
+        </span>
+      </div>
+       <div class="col-md-12 text-center mb-3">
+
+        <button (click)="showShare = false" style="background-color: red;" class="close-button">Close</button>
+       </div>
+    </div>
+  </div>
+
+
+
+  <div *ngIf="referalFlag" class="popup-overlay">
+    <div class="popup-container" style="position: absolute;overflow-y: auto;overflow-x: hidden !important;max-width: 95%;">
+      <h2 style="padding: 20px;background-color: #007bff !important;color: white;font-weight: 800;">Referred Details</h2>
+      <div class="row">
+
+        <span style="font-size: 15px;font-weight: 800;">
+         <div class="row">
+            <img class="img-fluid" src="../../assets/images/noData.gif" alt="refer">
+         </div>
+         <span class="mt-1" style="padding: 10px;">
+            Sorry no referral not found
+         </span>
+         <!-- <span >
+            <div class="mn-social-bottom-c" align="center" style="margin-top: 6rem;">
+                <p>Refer and Earn:</p>
+                <a (click)="shareOnFacebook()" class="mn-social-bottom"><i class="fa fa-facebook"></i></a>
+                <a (click)="shareOnTwitter()" class="mn-social-bottom"><i class="fa fa-twitter"></i></a>
+                <a (click)="shareOnLinkedIn()" class="mn-social-bottom"><i class="fa fa-linkedin"></i></a>
+                <a (click)="shareOnWhatsApp()" class="mn-social-bottom"><i class="fa fa-whatsapp"></i></a>
+             </div>
+         </span> -->
+
+        </span>
+      </div>
+       <div class="col-md-12 text-center mb-3">
+
+        <button (click)="referalFlag = false" style="background-color: red;" class="close-button">Close</button>
+       </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="deleteAccountflag" class="popup-overlay">
+    <div class="popup-container" style="position: absolute;overflow-y: auto;overflow-x: hidden !important;max-width: 95%;">
+      <h2 style="padding: 20px;background-color: #007bff !important;color: white;font-weight: 800;">Delete Account</h2>
+      <div class="row">
+
+        <span style="font-size: 15px;font-weight: 800;">
+         <span >
+            <div class="mn-social-bottom-c" align="center" style="margin-top: 6rem;">
+                <p style="font-size: 15px !important;color: black;font-weight: 800;">Are you sure you want to delete account ?</p>
+             </div>
+             <span style="color: red;font-weight: 500;">
+                Note : All the data related to your account will be deleted and you will no longer be able to use the application 
+             </span>
+         </span>
+
+        </span>
+      </div>
+       <div class="col-md-12 text-center mb-3">
+        <button (click)="deleteAccountFunction()" style="background-color: red;padding: 7px 20px !important;margin-left: 5px;font-weight: 600;" class="close-button">Yes Proceed</button>
+
+        <button (click)="deleteAccountflag = false" style="background-color:green;padding: 7px 20px !important;margin-left: 5px;font-weight: 600;" class="close-button">No Cancel</button>
+       </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="subsribedFlag" class="popup-overlay">
+    <div class="popup-container" style="position: absolute;overflow-y: auto;overflow-x: hidden !important;max-width: 95%;">
+      <h2 style="padding: 20px;background-color: #007bff !important;color: white;font-weight: 800;">Subscribed</h2>
+      <div class="row">
+
+        <span style="font-size: 15px;font-weight: 800;">
+            <img class="img-fluid" style="max-width: 50%;" src="../../assets/images/subscribed.gif" alt="refer">
+         <span >
+            <div class="mn-social-bottom-c" align="center" style="margin-top: 6rem;">
+                <p style="font-size: 15px !important;">Congrats your successfully subscribed</p>
+             </div>
+             <!-- <span style="color: red;font-weight: 800;">
+                Note : All the data related to your account will be deleted and you will no longer be able to use the application 
+             </span> -->
+         </span>
+
+        </span>
+      </div>
+       <div class="col-md-12 text-center mb-3">
+        <!-- <button (click)="showShare = false" style="background-color: red;padding: 7px 20px !important;margin-left: 5px;" class="close-button">Yes Proceed</button> -->
+
+        <button (click)="subsribedFlag = false" style="background-color:red;padding: 7px 20px !important;margin-left: 5px;" class="close-button">Close</button>
+       </div>
+    </div>
+  </div>
+
+
+
+  
+
+
+
+<div class="mt-5">
+    <app-footer></app-footer>
+</div>
